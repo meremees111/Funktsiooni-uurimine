@@ -22,6 +22,10 @@ def lisa_graafik(formula, xkohad):
     plt.plot(x, y)
     plt.axhline(0, color='black')
     plt.axvline(0, color='black')
+    init_printing(use_latex= 'mathjax')
+    x = symbols('x')
+    lateks = latex(eval(formula))
+    plt.title('$%s$' %lateks, fontsize = 25)
     plt.savefig('graafik.png')
     tahvel = Canvas(raam, height=600, width=800, background='white')
     img = PhotoImage(file="graafik.png")
@@ -50,13 +54,11 @@ def näita_tulemus():
 
         lisa_graafik(valem.get(), range(-10, 10))
 
+
+
     else:
         tühi_sisend = ttk.Label(raam, text='Sisend on tühi.')
         tühi_sisend.place(x=150, y=240)
-
-
-
-
 
 
 raam = Tk()
@@ -69,6 +71,8 @@ silt.place(x = 125, y= 20, width = 160, height=60)
 valem = ttk.Entry(raam, width=40)
 valem.place(x = 80, y= 100, width = 250, height=60)
 
+
+
 arvuta_nupp = ttk.Button(raam, text='Arvuta!', command=näita_tulemus)
 arvuta_nupp.place(x=125, y=180, width=160, height=60)
 
@@ -77,5 +81,5 @@ def on_closing():
         os.remove('graafik.png')
         raam.destroy()
 
-raam.protocol("WM_DELETE_WINDOW", on_closing)
+#raam.protocol("WM_DELETE_WINDOW", on_closing)
 raam.mainloop()
