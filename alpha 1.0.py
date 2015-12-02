@@ -12,7 +12,7 @@ def leia_nullkohad(sisend):
     vastus = []
     nullkohad = solve(sisend, x)
     for i in nullkohad:
-        vastus.append([i,0])
+        vastus.append({i,0})
     return list(map(str, vastus))
 
 
@@ -33,7 +33,7 @@ def leia_miinimum(sisend):
         if len(minimum) > 0:
             vastus = []
             for i in minimum:
-                vastus.append([i, eval(sisend.replace('x', str(i)))])
+                vastus.append({i, eval(sisend.replace('x', str(i)))})
                 return list(map(str, vastus))
         else:
             return ['Puudub']
@@ -51,7 +51,7 @@ def leia_maksimum(sisend):
         if len(maksimum) > 0:
             vastus = []
             for i in maksimum:
-                vastus.append([i, eval(sisend.replace('x', str(i)))])
+                vastus.append({i, eval(sisend.replace('x', str(i)))})
                 return list(map(str, vastus))
         else:
             return ['Puudub']
