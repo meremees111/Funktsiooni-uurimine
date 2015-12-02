@@ -36,8 +36,6 @@ def leia_miinimum(sisend):
             vastus = []
             for i in minimum:
                 vastus.append((i, eval(sisend.replace('x', ('('+str(i)+')')))))
-                print({(sisend.replace('x', ('('+str(i)+')')))})
-                print(vastus)
                 return list(map(str, vastus))
         else:
             return ['Puudub']
