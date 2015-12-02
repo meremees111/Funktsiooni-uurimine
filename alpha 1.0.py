@@ -21,7 +21,9 @@ def lahenda_võrrand(sisend):
 
 def võta_tuletis(sisend):
     return diff(sisend, x)
-
+    
+    
+# Fiksisin väikse bugi, kus Python ei saanud aru, et tegemist on negatiivse arvuga (Volcania)
 def leia_miinimum(sisend):
     tuletis = diff(sisend, x)
     if diff(tuletis, x) != 0:
@@ -33,13 +35,17 @@ def leia_miinimum(sisend):
         if len(minimum) > 0:
             vastus = []
             for i in minimum:
-                vastus.append({i, eval(sisend.replace('x', str(i)))})
+                vastus.append((i, eval(sisend.replace('x', ('('+str(i)+')')))))
+                print({(sisend.replace('x', ('('+str(i)+')')))})
+                print(vastus)
                 return list(map(str, vastus))
         else:
             return ['Puudub']
     else:
         return ['Puudub']
 
+
+# Fiksisin väikse bugi, kus Python ei saanud aru, et tegemist on negatiivse arvuga (Volcania)
 def leia_maksimum(sisend):
     tuletis = diff(sisend, x)
     if diff(tuletis, x) != 0:
@@ -51,7 +57,7 @@ def leia_maksimum(sisend):
         if len(maksimum) > 0:
             vastus = []
             for i in maksimum:
-                vastus.append({i, eval(sisend.replace('x', str(i)))})
+                vastus.append((i, eval(sisend.replace('x', '('+str(i)+')'))))
                 return list(map(str, vastus))
         else:
             return ['Puudub']
