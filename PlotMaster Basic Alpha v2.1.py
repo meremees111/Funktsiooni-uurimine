@@ -162,20 +162,10 @@ def leia_kahanemine(sisend):
         return ['Puudub']
 
 
-def frange(start, stop, step):
-    i = start
-    while i < stop:
-        yield i
-        i += step
 
-
-
-
-def lisa_graafik(formula, xkohad):
-    x = np.array(xkohad)
+def lisa_graafik(formula):
+    x = np.arange(-10, 10, 0.1)
     y = eval(formula)
-    print(x)
-    print(y)
     plt.ylim(-20, 20)
     plt.plot(x, y)
     plt.axhline(0, color='black')
@@ -246,7 +236,7 @@ def näita_tulemus():
         #
         # käänupunkt_vastus = ttk.Label(raam, text=leia_käänupunkt(valem.get()), font=('Cambria Math', 10, 'bold'))
         # käänupunkt_vastus.place(x=250, y=590)
-        lisa_graafik(valem.get(), xteljerange())
+        lisa_graafik(valem.get())
 
     else:
         tühi_sisend = ttk.Label(raam, text='Sisend on tühi.')
