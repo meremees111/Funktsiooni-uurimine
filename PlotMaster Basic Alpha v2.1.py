@@ -166,7 +166,8 @@ def leia_kahanemine(sisend):
 def lisa_graafik(formula):
     x = np.arange(-10, 10, 0.1)
     y = eval(formula)
-    plt.ylim(-20, 20)
+    plt.figure(figsize=(5,5))
+    plt.ylim(-10, 10)
     plt.plot(x, y)
     plt.axhline(0, color='black')
     plt.axvline(0, color='black')
@@ -245,22 +246,27 @@ def näita_tulemus():
 
 raam = Tk()
 raam.title('PLOTMASTER BASIC ALHPA 0.2.1')
-raam.geometry('1300x800')
+kõrgus = 800
+laius = 1300
+raam.geometry(str(laius)+'x'+str(kõrgus))
+
 
 silt = ttk.Label(raam, text='Sisesta oma valem: ',  font=('Cambria Math', 13, 'bold'))
-silt.place(x = 125, y= 20, width = 160, height=60)
+silt.place(x = laius/2.3, y= 0, width = 160, height=60)
 
 valem = ttk.Entry(raam, width=40)
-valem.place(x = 80, y= 100, width = 250, height=60)
+valem.place(x = laius/2.53, y= 70, width = 250, height=60)
 
 arvuta_nupp = ttk.Button(raam, text='Arvuta!', command=näita_tulemus)
-arvuta_nupp.place(x=125, y=180, width=160, height=60)
+arvuta_nupp.place(x=laius/2.25, y=140, width=130, height=40)
 
 
 def on_closing():
-    if messagebox.askokcancel("Quit", "Kindel, et soovid lõpetada?"):
+    if os.path.isfile('graafik.png'):
         os.remove('graafik.png')
-        raam.destroy()
+        sys.exit()
+    else:
+        sys.exit()
 
-#raam.protocol("WM_DELETE_WINDOW", on_closing)
+raam.protocol("WM_DELETE_WINDOW", on_closing)
 raam.mainloop()
