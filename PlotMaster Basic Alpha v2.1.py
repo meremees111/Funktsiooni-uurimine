@@ -8,7 +8,7 @@ import os
 from itertools import tee
 
 x = symbols('x')
-
+#muudatus!
 
 def leia_nullkohad(sisend):
     vastus = []
