@@ -60,8 +60,8 @@ def leia_maksimum(sisend):
         return ['Puudub']
 
 
-def paarideks(iterable):
-    a, b = tee(iterable)
+def paarideks(järjend):
+    a, b = tee(järjend)
     next(b, None)
     return zip(a, b)
 
@@ -173,7 +173,7 @@ def lisa_graafik(formula):
     init_printing(use_latex='mathjax')
     x = symbols('x')
     lateks = latex(eval(formula))
-    plt.title('$%s$'%lateks, fontsize=25)
+    plt.title('$%s$' % lateks, fontsize=25)
     plt.savefig('graafik.png')
     img = PhotoImage(file="graafik.png")
     graaf = Label(image=img)
