@@ -162,6 +162,115 @@ def leia_kahanemine(sisend):
         return ['Puudub']
 
 
+def leia_kumerus(sisend):
+    if diff(diff(sisend, x), x) != 0 and not str(sisend).isnumeric():
+        vaheldus_piirkond = solve(diff(diff(sisend, x), x))
+        algne_list = ['-L', 'L']
+
+        for i in range(len(vaheldus_piirkond)):
+            algne_list.insert(1, vaheldus_piirkond[i-1])
+
+        intervalid = []
+        for paar in paarideks(algne_list):
+            intervalid.append(paar)
+
+        kumer = []
+        for i in intervalid:
+            if 'L' in i:
+                kumer_parameeter = True
+                for arv in range(i[0], 30):
+                    if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
+                        kumer_parameeter = False
+                    else:
+                        kumer_parameeter = True
+                if kumer_parameeter:
+                    kumer.append(i)
+            if '-L' in i:
+                kumer_parameeter = True
+                for arv in range(-30, i[1]):
+                    if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
+                        kumer_parameeter = False
+                    else:
+                        kumer_parameeter = True
+                if kumer_parameeter:
+                    kumer.append(i)
+            if 'L' not in i and '-L'not in i:
+                kumer_parameeter = True
+                for arv in range(i[0], i[1]):
+                    if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
+                        kumer_parameeter = False
+                    else:
+                        kumer_parameeter = True
+                if kumer_parameeter:
+                    kumer.append(i)
+        if len(kumer) > 0:
+            return list(map(str, list(kumer)))
+        else:
+            return ['Puduub']
+    else:
+        return ['Puudub']
+
+
+def leia_nõgusus(sisend):
+    if diff(diff(sisend, x), x) != 0 and not str(sisend).isnumeric():
+        vaheldus_piirkond = solve(diff(diff(sisend, x), x))
+        algne_list = ['-L', 'L']
+
+        for i in range(len(vaheldus_piirkond)):
+            algne_list.insert(1, vaheldus_piirkond[i-1])
+
+        intervalid = []
+        for paar in paarideks(algne_list):
+            intervalid.append(paar)
+
+        nõgus = []
+        for i in intervalid:
+            if 'L' in i:
+                nõgus_parameeter = True
+                for arv in range(i[0], 30):
+                    if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
+                        nõgus_parameeter = False
+                    else:
+                        nõgus_parameeter = True
+                if nõgus_parameeter:
+                    nõgus.append(i)
+            if '-L' in i:
+                nõgus_parameeter = True
+                for arv in range(-30, i[1]):
+                    if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
+                        nõgus_parameeter = False
+                    else:
+                        nõgus_parameeter = True
+                if nõgus_parameeter:
+                    nõgus.append(i)
+            if 'L' not in i and '-L'not in i:
+                nõgus_parameeter = True
+                for arv in range(i[0], i[1]):
+                    if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
+                        nõgus_parameeter = False
+                    else:
+                        nõgus_parameeter = True
+                if nõgus_parameeter:
+                    nõgus.append(i)
+        if len(nõgus) > 0:
+            return list(map(str, list(nõgus)))
+        else:
+            return ['Puduub']
+    else:
+        return ['Puudub']
+
+
+def leia_käänupunkt(sisend):
+    if diff(diff(sisend, x), x) != 0 and not str(diff(diff(sisend, x), x)).isnumeric():
+        vastus = []
+        nullkohad = solve(diff(diff(sisend, x), x))
+        for i in nullkohad:
+            vastus.append((i, eval(sisend.replace('x', '('+str(i)+')'))))
+        return list(map(str, vastus))
+    else:
+        return ['Puduub']
+
+
 def lisa_graafik(formula):
     x = np.arange(-10, 10, 0.1)
     y = eval(formula)
@@ -200,38 +309,36 @@ def näita_tulemus():
 
         maksimum_vastus = ttk.Label(raam, text=[' , '.join(leia_maksimum(valem.get()))], font=('Cambria Math', 10, 'bold'))
         maksimum_vastus.place(x=250, y=340)
-
-        # # Töötab hetkel ainult kui on paraboolne funktsioon, kus on ainult 1 vaheldumispunkt (Alpha v0.1)
+        # Töötab minu arust korralikult, kuni kumeruseni.
         kasvab_string = ttk.Label(raam, text='Kasvab_ALPHA:', font=('Cambria Math', 10, 'bold'))
         kasvab_string.place(x=90, y=390)
-        #
+
         kasvab_vastus = ttk.Label(raam, text=[' , '.join(leia_kasvamine(valem.get()))], font=('Cambria Math', 10, 'bold'))
         kasvab_vastus.place(x=250, y=390)
-        # # Töötab hetkel ainult kui on paraboolne funktsioon, kus on ainult 1 vaheldumispunkt (Alpha v0.1)
+
         kahaneb_string = ttk.Label(raam, text='Kahaneb_ALPHA:', font=('Cambria Math', 10, 'bold'))
         kahaneb_string.place(x=90, y=440)
-        #
+
         kahaneb_vastus = ttk.Label(raam, text=[' , '.join(leia_kahanemine(valem.get()))], font=('Cambria Math', 10, 'bold'))
         kahaneb_vastus.place(x=250, y=440)
-        #
-        # kumerus_string = ttk.Label(raam, text='Kumerus_ALPHA:', font=('Cambria Math', 10, 'bold'))
-        # kumerus_string.place(x=90, y=490)
-        #
-        # kumerus_vastus = ttk.Label(raam, text=[' , '.join(leia_kumerus(valem.get()))], font=('Cambria Math', 10, 'bold'))
-        # kumerus_vastus.place(x=250, y=490)
-        #
-        # nõgusus_string = ttk.Label(raam, text='Nõgusus:_ALPHA', font=('Cambria Math', 10, 'bold'))
-        # nõgusus_string.place(x=90, y=540)
-        #
-        # nõgusus_vastus = ttk.Label(raam, text=[' , '.join(leia_nõgusus(valem.get()))], font=('Cambria Math', 10, 'bold'))
-        # nõgusus_vastus.place(x=250, y=540)
-        #
-        # # Seda saab varsti juba beta-ks nimetada :D (Alpha v0.1)
-        # käänupunkt_string = ttk.Label(raam, text='Käänupunkt_ALPHA:', font=('Cambria Math', 10, 'bold'))
-        # käänupunkt_string.place(x=90, y=590)
-        #
-        # käänupunkt_vastus = ttk.Label(raam, text=leia_käänupunkt(valem.get()), font=('Cambria Math', 10, 'bold'))
-        # käänupunkt_vastus.place(x=250, y=590)
+
+        kumerus_string = ttk.Label(raam, text='Kumerus_ALPHA:', font=('Cambria Math', 10, 'bold'))
+        kumerus_string.place(x=90, y=490)
+
+        kumerus_vastus = ttk.Label(raam, text=[' , '.join(leia_kumerus(valem.get()))], font=('Cambria Math', 10, 'bold'))
+        kumerus_vastus.place(x=250, y=490)
+
+        nõgusus_string = ttk.Label(raam, text='Nõgusus:_ALPHA', font=('Cambria Math', 10, 'bold'))
+        nõgusus_string.place(x=90, y=540)
+
+        nõgusus_vastus = ttk.Label(raam, text=[' , '.join(leia_nõgusus(valem.get()))], font=('Cambria Math', 10, 'bold'))
+        nõgusus_vastus.place(x=250, y=540)
+
+        käänupunkt_string = ttk.Label(raam, text='Käänupunkt_ALPHA:', font=('Cambria Math', 10, 'bold'))
+        käänupunkt_string.place(x=90, y=590)
+
+        käänupunkt_vastus = ttk.Label(raam, text=leia_käänupunkt(valem.get()), font=('Cambria Math', 10, 'bold'))
+        käänupunkt_vastus.place(x=250, y=590)
         lisa_graafik(valem.get())
 
     else:
