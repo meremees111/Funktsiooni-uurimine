@@ -3,7 +3,7 @@ from tkinter import ttk
 from sympy import *
 import matplotlib.pyplot as plt
 import numpy as np
-from tkinter import messagebox
+# from tkinter import messagebox Seda vist ei kasutata nagu ma aru sain.
 import os
 from itertools import tee
 
@@ -14,7 +14,7 @@ def leia_nullkohad(sisend):
     vastus = []
     nullkohad = solve(sisend, x)
     for i in nullkohad:
-        vastus.append((i,0))
+        vastus.append((i, 0))
     return list(map(str, vastus))
 
 
@@ -162,26 +162,23 @@ def leia_kahanemine(sisend):
         return ['Puudub']
 
 
-
 def lisa_graafik(formula):
     x = np.arange(-10, 10, 0.1)
     y = eval(formula)
-    plt.figure(figsize=(5,5))
+    plt.figure(figsize=(5, 5))
     plt.ylim(-10, 10)
     plt.plot(x, y)
     plt.axhline(0, color='black')
     plt.axvline(0, color='black')
-    init_printing(use_latex= 'mathjax')
+    init_printing(use_latex='mathjax')
     x = symbols('x')
     lateks = latex(eval(formula))
-    plt.title('$%s$' %lateks, fontsize = 25)
+    plt.title('$%s$'%lateks, fontsize=25)
     plt.savefig('graafik.png')
     img = PhotoImage(file="graafik.png")
     graaf = Label(image=img)
     graaf.image = img
-    graaf.pack( side = RIGHT)
-
-
+    graaf.pack(side=RIGHT)
 
 
 def näita_tulemus():
@@ -217,8 +214,6 @@ def näita_tulemus():
         kahaneb_vastus = ttk.Label(raam, text=[' , '.join(leia_kahanemine(valem.get()))], font=('Cambria Math', 10, 'bold'))
         kahaneb_vastus.place(x=250, y=440)
         #
-        # # neid tuleb alles teha (Alpha v0.1)
-        # # Mingi hästi väike alpha nendest tehtud, et saavad mõnikord aru, kuid teine tuletis on lihtsalt arv (Alpha v0.1)
         # kumerus_string = ttk.Label(raam, text='Kumerus_ALPHA:', font=('Cambria Math', 10, 'bold'))
         # kumerus_string.place(x=90, y=490)
         #
@@ -252,10 +247,10 @@ raam.geometry(str(laius)+'x'+str(kõrgus))
 
 
 silt = ttk.Label(raam, text='Sisesta oma valem: ',  font=('Cambria Math', 13, 'bold'))
-silt.place(x = laius/2.3, y= 0, width = 160, height=60)
+silt.place(x=laius/2.3, y=0, width=160, height=60)
 
 valem = ttk.Entry(raam, width=40)
-valem.place(x = laius/2.53, y= 70, width = 250, height=60)
+valem.place(x=laius/2.53, y=70, width=250, height=60)
 
 arvuta_nupp = ttk.Button(raam, text='Arvuta!', command=näita_tulemus)
 arvuta_nupp.place(x=laius/2.25, y=140, width=130, height=40)
