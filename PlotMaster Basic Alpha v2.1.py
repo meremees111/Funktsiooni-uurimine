@@ -8,8 +8,7 @@ import os
 from itertools import tee
 
 x = symbols('x')
-#muudatus!
-#muudatus
+
 
 def leia_nullkohad(sisend):
     vastus = []
@@ -255,6 +254,7 @@ valem.place(x = 80, y= 100, width = 250, height=60)
 
 arvuta_nupp = ttk.Button(raam, text='Arvuta!', command=näita_tulemus)
 arvuta_nupp.place(x=125, y=180, width=160, height=60)
+
 
 def on_closing():
     if messagebox.askokcancel("Quit", "Kindel, et soovid lõpetada?"):
