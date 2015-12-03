@@ -69,7 +69,7 @@ def paarideks(järjend):
 def leia_kasvamine(sisend):
     if diff(diff(sisend, x), x) != 0:
         vaheldus_piirkond = solve(diff(sisend))
-        algne_list = ['-L', 'L']
+        algne_list = ['-\infty', '\infty']
 
         for i in range(len(vaheldus_piirkond)):
             algne_list.insert(1, vaheldus_piirkond[i-1])
@@ -80,7 +80,7 @@ def leia_kasvamine(sisend):
 
         kasvab = []
         for i in intervalid:
-            if 'L' in i:
+            if '\infty' in i:
                 kasvab_parameeter = True
                 for arv in range(i[0], 30):
                     if diff(sisend).replace('x', '('+str(arv)+')') < 0:
@@ -89,7 +89,7 @@ def leia_kasvamine(sisend):
                         kasvab_parameeter = True
                 if kasvab_parameeter:
                     kasvab.append(i)
-            if '-L' in i:
+            if '-\infty' in i:
                 kasvab_parameeter = True
                 for arv in range(-30, i[1]):
                     if diff(sisend).replace('x', '('+str(arv)+')') < 0:
@@ -98,7 +98,7 @@ def leia_kasvamine(sisend):
                         kasvab_parameeter = True
                 if kasvab_parameeter:
                     kasvab.append(i)
-            if 'L' not in i and '-L'not in i:
+            if '\infty' not in i and '-\infty'not in i:
                 kasvab_parameeter = True
                 for arv in range(i[0], i[1]):
                     if diff(sisend).replace('x', '('+str(arv)+')') < 0:
@@ -116,7 +116,7 @@ def leia_kasvamine(sisend):
 def leia_kahanemine(sisend):
     if diff(diff(sisend, x), x) != 0:
         vaheldus_piirkond = solve(diff(sisend))
-        algne_list = ['-L', 'L']
+        algne_list = ['-\infty', '\infty']
 
         for i in range(len(vaheldus_piirkond)):
             algne_list.insert(1, vaheldus_piirkond[i-1])
@@ -127,7 +127,7 @@ def leia_kahanemine(sisend):
 
         kahaneb = []
         for i in intervalid:
-            if 'L' in i:
+            if '\infty' in i:
                 kahaneb_parameeter = True
                 for arv in range(i[0], 30):
                     if diff(sisend).replace('x', '('+str(arv)+')') > 0:
@@ -136,7 +136,7 @@ def leia_kahanemine(sisend):
                         kahaneb_parameeter = True
                 if kahaneb_parameeter:
                     kahaneb.append(i)
-            if '-L' in i:
+            if '-\infty' in i:
                 kahaneb_parameeter = True
                 for arv in range(-30, i[1]):
                     if diff(sisend).replace('x', '('+str(arv)+')') > 0:
@@ -145,7 +145,7 @@ def leia_kahanemine(sisend):
                         kahaneb_parameeter = True
                 if kahaneb_parameeter:
                     kahaneb.append(i)
-            if 'L' not in i and '-L'not in i:
+            if '\infty' not in i and '-\infty'not in i:
                 kahaneb_parameeter = True
                 for arv in range(i[0], i[1]):
                     if diff(sisend).replace('x', '('+str(arv)+')') > 0:
@@ -165,7 +165,7 @@ def leia_kahanemine(sisend):
 def leia_kumerus(sisend):
     if diff(diff(sisend, x), x) != 0 and not str(sisend).isnumeric():
         vaheldus_piirkond = solve(diff(diff(sisend, x), x))
-        algne_list = ['-L', 'L']
+        algne_list = ['-\infty', '\infty']
 
         for i in range(len(vaheldus_piirkond)):
             algne_list.insert(1, vaheldus_piirkond[i-1])
@@ -176,7 +176,7 @@ def leia_kumerus(sisend):
 
         kumer = []
         for i in intervalid:
-            if 'L' in i:
+            if '\infty' in i:
                 kumer_parameeter = True
                 for arv in range(i[0], 30):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
@@ -185,7 +185,7 @@ def leia_kumerus(sisend):
                         kumer_parameeter = True
                 if kumer_parameeter:
                     kumer.append(i)
-            if '-L' in i:
+            if '-\infty' in i:
                 kumer_parameeter = True
                 for arv in range(-30, i[1]):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
@@ -194,7 +194,7 @@ def leia_kumerus(sisend):
                         kumer_parameeter = True
                 if kumer_parameeter:
                     kumer.append(i)
-            if 'L' not in i and '-L'not in i:
+            if '\infty' not in i and '-\infty'not in i:
                 kumer_parameeter = True
                 for arv in range(i[0], i[1]):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
@@ -214,7 +214,7 @@ def leia_kumerus(sisend):
 def leia_nõgusus(sisend):
     if diff(diff(sisend, x), x) != 0 and not str(sisend).isnumeric():
         vaheldus_piirkond = solve(diff(diff(sisend, x), x))
-        algne_list = ['-L', 'L']
+        algne_list = ['-\infty', '\infty']
 
         for i in range(len(vaheldus_piirkond)):
             algne_list.insert(1, vaheldus_piirkond[i-1])
@@ -225,7 +225,7 @@ def leia_nõgusus(sisend):
 
         nõgus = []
         for i in intervalid:
-            if 'L' in i:
+            if '\infty' in i:
                 nõgus_parameeter = True
                 for arv in range(i[0], 30):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
@@ -234,7 +234,7 @@ def leia_nõgusus(sisend):
                         nõgus_parameeter = True
                 if nõgus_parameeter:
                     nõgus.append(i)
-            if '-L' in i:
+            if '-\infty' in i:
                 nõgus_parameeter = True
                 for arv in range(-30, i[1]):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
@@ -243,7 +243,7 @@ def leia_nõgusus(sisend):
                         nõgus_parameeter = True
                 if nõgus_parameeter:
                     nõgus.append(i)
-            if 'L' not in i and '-L'not in i:
+            if '\infty' not in i and '-\infty'not in i:
                 nõgus_parameeter = True
                 for arv in range(i[0], i[1]):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
@@ -352,7 +352,7 @@ def näita_tulemus():
 
         kasvab_vastus = ttk.Label(raam, text=[' , '.join(leia_kasvamine(valem.get()))], font=('Cambria Math', 10, 'bold'))
         kasvab_vastus.place(x=250, y=390)
-        print(' , '.join(leia_kasvamine(valem.get())))
+
         # # Töötab hetkel ainult kui on paraboolne funktsioon, kus on ainult 1 vaheldumispunkt (Alpha v0.1)
         kahaneb_string = ttk.Label(raam, text='Kahaneb_ALPHA:', font=('Cambria Math', 10, 'bold'))
         kahaneb_string.place(x=90, y=440)
