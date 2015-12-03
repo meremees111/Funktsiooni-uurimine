@@ -234,7 +234,7 @@ def näita_tulemus():
             # käänupunkt_vastus.place(x=250, y=590)
 
 
-            lisa_graafik(valem.get(), range(-10, 10))
+            lisa_graafik(valem.get(), range(-10, 11))
 
 
     else:
@@ -243,7 +243,7 @@ def näita_tulemus():
 
 
 raam = Tk()
-raam.title('Funktsiooni uurija v.0.1 ALPHA')
+raam.title('PLOTMASTER BASIC ALHPA 0.2.1')
 raam.geometry('1300x800')
 
 silt = ttk.Label(raam, text='Sisesta oma valem: ',  font=('Cambria Math', 13, 'bold'))
