@@ -353,13 +353,14 @@ def näita_tulemus():
         kasvab_vastus = ttk.Label(raam, text=[' , '.join(leia_kasvamine(valem.get()))], font=('Cambria Math', 10, 'bold'))
         kasvab_vastus.place(x=250, y=390)
 
-        # # Töötab hetkel ainult kui on paraboolne funktsioon, kus on ainult 1 vaheldumispunkt (Alpha v0.1)
+        
         kahaneb_string = ttk.Label(raam, text='Kahaneb_ALPHA:', font=('Cambria Math', 10, 'bold'))
         kahaneb_string.place(x=90, y=440)
 
         kahaneb_vastus = ttk.Label(raam, text=[' , '.join(leia_kahanemine(valem.get()))], font=('Cambria Math', 10, 'bold'))
         kahaneb_vastus.place(x=250, y=440)
-
+        
+        # See ka töötab, kõik on vist hästi.
         kumerus_string = ttk.Label(raam, text='Kumerus_ALPHA:', font=('Cambria Math', 10, 'bold'))
         kumerus_string.place(x=90, y=490)
 
