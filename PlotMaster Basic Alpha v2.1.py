@@ -162,9 +162,21 @@ def leia_kahanemine(sisend):
         return ['Puudub']
 
 
+def frange(start, stop, step):
+    i = start
+    while i < stop:
+        yield i
+        i += step
+
+
+
+
 def lisa_graafik(formula, xkohad):
     x = np.array(xkohad)
     y = eval(formula)
+    print(x)
+    print(y)
+    plt.ylim(-20, 20)
     plt.plot(x, y)
     plt.axhline(0, color='black')
     plt.axvline(0, color='black')
@@ -179,63 +191,62 @@ def lisa_graafik(formula, xkohad):
     graaf.pack( side = RIGHT)
 
 
+
+
 def näita_tulemus():
     if valem.get() != '':
-            nullkohad_string = ttk.Label(raam, text='Nullkohad_BETA: ', font=('Cambria Math', 10, 'bold'))
-            nullkohad_string.place(x=90, y=240)
+        nullkohad_string = ttk.Label(raam, text='Nullkohad_BETA: ', font=('Cambria Math', 10, 'bold'))
+        nullkohad_string.place(x=90, y=240)
 
-            nullkohad_vastus = ttk.Label(raam, text=[' , '.join(leia_nullkohad(valem.get()))], font=('Cambria Math', 10, 'bold'))
-            nullkohad_vastus.place(x=250, y=240)
-            # Tegin ekstreemumite leidmist korda, peaks nüüd korrektselt töötama
-            miinimum_string = ttk.Label(raam, text='Miinimum_BETA:', font=('Cambria Math', 10, 'bold'))
-            miinimum_string.place(x=90, y=290)
+        nullkohad_vastus = ttk.Label(raam, text=[' , '.join(leia_nullkohad(valem.get()))], font=('Cambria Math', 10, 'bold'))
+        nullkohad_vastus.place(x=250, y=240)
+        # Tegin ekstreemumite leidmist korda, peaks nüüd korrektselt töötama
+        miinimum_string = ttk.Label(raam, text='Miinimum_BETA:', font=('Cambria Math', 10, 'bold'))
+        miinimum_string.place(x=90, y=290)
 
-            minimum_vastus = ttk.Label(raam, text=[' , '.join(leia_miinimum(valem.get()))], font=('Cambria Math', 10, 'bold'))
-            minimum_vastus.place(x=250, y=290)
+        minimum_vastus = ttk.Label(raam, text=[' , '.join(leia_miinimum(valem.get()))], font=('Cambria Math', 10, 'bold'))
+        minimum_vastus.place(x=250, y=290)
 
-            maksimum_string = ttk.Label(raam, text='Maksimum_BETA:', font=('Cambria Math', 10, 'bold'))
-            maksimum_string.place(x=90, y=340)
+        maksimum_string = ttk.Label(raam, text='Maksimum_BETA:', font=('Cambria Math', 10, 'bold'))
+        maksimum_string.place(x=90, y=340)
 
-            maksimum_vastus = ttk.Label(raam, text=[' , '.join(leia_maksimum(valem.get()))], font=('Cambria Math', 10, 'bold'))
-            maksimum_vastus.place(x=250, y=340)
+        maksimum_vastus = ttk.Label(raam, text=[' , '.join(leia_maksimum(valem.get()))], font=('Cambria Math', 10, 'bold'))
+        maksimum_vastus.place(x=250, y=340)
 
-            # # Töötab hetkel ainult kui on paraboolne funktsioon, kus on ainult 1 vaheldumispunkt (Alpha v0.1)
-            kasvab_string = ttk.Label(raam, text='Kasvab_ALPHA:', font=('Cambria Math', 10, 'bold'))
-            kasvab_string.place(x=90, y=390)
-            #
-            kasvab_vastus = ttk.Label(raam, text=[' , '.join(leia_kasvamine(valem.get()))], font=('Cambria Math', 10, 'bold'))
-            kasvab_vastus.place(x=250, y=390)
-            # # Töötab hetkel ainult kui on paraboolne funktsioon, kus on ainult 1 vaheldumispunkt (Alpha v0.1)
-            kahaneb_string = ttk.Label(raam, text='Kahaneb_ALPHA:', font=('Cambria Math', 10, 'bold'))
-            kahaneb_string.place(x=90, y=440)
-            #
-            kahaneb_vastus = ttk.Label(raam, text=[' , '.join(leia_kahanemine(valem.get()))], font=('Cambria Math', 10, 'bold'))
-            kahaneb_vastus.place(x=250, y=440)
-            #
-            # # neid tuleb alles teha (Alpha v0.1)
-            # # Mingi hästi väike alpha nendest tehtud, et saavad mõnikord aru, kuid teine tuletis on lihtsalt arv (Alpha v0.1)
-            # kumerus_string = ttk.Label(raam, text='Kumerus_ALPHA:', font=('Cambria Math', 10, 'bold'))
-            # kumerus_string.place(x=90, y=490)
-            #
-            # kumerus_vastus = ttk.Label(raam, text=[' , '.join(leia_kumerus(valem.get()))], font=('Cambria Math', 10, 'bold'))
-            # kumerus_vastus.place(x=250, y=490)
-            #
-            # nõgusus_string = ttk.Label(raam, text='Nõgusus:_ALPHA', font=('Cambria Math', 10, 'bold'))
-            # nõgusus_string.place(x=90, y=540)
-            #
-            # nõgusus_vastus = ttk.Label(raam, text=[' , '.join(leia_nõgusus(valem.get()))], font=('Cambria Math', 10, 'bold'))
-            # nõgusus_vastus.place(x=250, y=540)
-            #
-            # # Seda saab varsti juba beta-ks nimetada :D (Alpha v0.1)
-            # käänupunkt_string = ttk.Label(raam, text='Käänupunkt_ALPHA:', font=('Cambria Math', 10, 'bold'))
-            # käänupunkt_string.place(x=90, y=590)
-            #
-            # käänupunkt_vastus = ttk.Label(raam, text=leia_käänupunkt(valem.get()), font=('Cambria Math', 10, 'bold'))
-            # käänupunkt_vastus.place(x=250, y=590)
-
-
-            lisa_graafik(valem.get(), range(-10, 11))
-
+        # # Töötab hetkel ainult kui on paraboolne funktsioon, kus on ainult 1 vaheldumispunkt (Alpha v0.1)
+        kasvab_string = ttk.Label(raam, text='Kasvab_ALPHA:', font=('Cambria Math', 10, 'bold'))
+        kasvab_string.place(x=90, y=390)
+        #
+        kasvab_vastus = ttk.Label(raam, text=[' , '.join(leia_kasvamine(valem.get()))], font=('Cambria Math', 10, 'bold'))
+        kasvab_vastus.place(x=250, y=390)
+        # # Töötab hetkel ainult kui on paraboolne funktsioon, kus on ainult 1 vaheldumispunkt (Alpha v0.1)
+        kahaneb_string = ttk.Label(raam, text='Kahaneb_ALPHA:', font=('Cambria Math', 10, 'bold'))
+        kahaneb_string.place(x=90, y=440)
+        #
+        kahaneb_vastus = ttk.Label(raam, text=[' , '.join(leia_kahanemine(valem.get()))], font=('Cambria Math', 10, 'bold'))
+        kahaneb_vastus.place(x=250, y=440)
+        #
+        # # neid tuleb alles teha (Alpha v0.1)
+        # # Mingi hästi väike alpha nendest tehtud, et saavad mõnikord aru, kuid teine tuletis on lihtsalt arv (Alpha v0.1)
+        # kumerus_string = ttk.Label(raam, text='Kumerus_ALPHA:', font=('Cambria Math', 10, 'bold'))
+        # kumerus_string.place(x=90, y=490)
+        #
+        # kumerus_vastus = ttk.Label(raam, text=[' , '.join(leia_kumerus(valem.get()))], font=('Cambria Math', 10, 'bold'))
+        # kumerus_vastus.place(x=250, y=490)
+        #
+        # nõgusus_string = ttk.Label(raam, text='Nõgusus:_ALPHA', font=('Cambria Math', 10, 'bold'))
+        # nõgusus_string.place(x=90, y=540)
+        #
+        # nõgusus_vastus = ttk.Label(raam, text=[' , '.join(leia_nõgusus(valem.get()))], font=('Cambria Math', 10, 'bold'))
+        # nõgusus_vastus.place(x=250, y=540)
+        #
+        # # Seda saab varsti juba beta-ks nimetada :D (Alpha v0.1)
+        # käänupunkt_string = ttk.Label(raam, text='Käänupunkt_ALPHA:', font=('Cambria Math', 10, 'bold'))
+        # käänupunkt_string.place(x=90, y=590)
+        #
+        # käänupunkt_vastus = ttk.Label(raam, text=leia_käänupunkt(valem.get()), font=('Cambria Math', 10, 'bold'))
+        # käänupunkt_vastus.place(x=250, y=590)
+        lisa_graafik(valem.get(), xteljerange())
 
     else:
         tühi_sisend = ttk.Label(raam, text='Sisend on tühi.')
