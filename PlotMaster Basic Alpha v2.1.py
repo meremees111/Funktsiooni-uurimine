@@ -3,7 +3,6 @@ from tkinter import ttk
 from sympy import *
 import matplotlib.pyplot as plt
 import numpy as np
-# from tkinter import messagebox Seda vist ei kasutata nagu ma aru sain.
 import os
 from itertools import tee
 
