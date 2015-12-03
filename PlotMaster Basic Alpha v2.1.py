@@ -3,6 +3,7 @@ from tkinter import ttk
 from sympy import *
 import matplotlib.pyplot as plt
 import numpy as np
+import pylab as pl
 # from tkinter import messagebox Seda vist ei kasutata nagu ma aru sain.
 import os
 from itertools import tee
@@ -163,22 +164,59 @@ def leia_kahanemine(sisend):
 
 
 def lisa_graafik(formula):
+    fig = pl.figure()
+    ax =  fig.add_axes([0.1, 0.2, 0.4, 0.4])
     x = np.arange(-10, 10, 0.1)
     y = eval(formula)
-    plt.figure(figsize=(5, 5))
-    plt.ylim(-10, 10)
-    plt.plot(x, y)
+    ax.plot(x, y)
+    ax.set_title('Bitwise Operation')
+    ax.set_xlabel('axis X')
+    ax.set_ylabel('axis Y')
     plt.axhline(0, color='black')
     plt.axvline(0, color='black')
-    init_printing(use_latex='mathjax')
+    pl.ylim(-10, 10)
     x = symbols('x')
-    lateks = latex(eval(formula))
-    plt.title('$%s$' % lateks, fontsize=25)
-    plt.savefig('graafik.png')
+
+    funktsioon = latex(eval(formula))
+    nullkohad = latex(' , '.join(leia_nullkohad(formula)))
+    miinimum = latex(' , '.join(leia_miinimum(formula)))
+    maksimum = latex(' , '.join(leia_maksimum(formula)))
+    kasvab = latex(('(\infty, 0),(0, \infty)'))
+
+    plt.title('$%s$' % funktsioon, fontsize=25)
+    data1 = ('$%s$' % nullkohad)
+    data2 = ('$%s$' % miinimum)
+    data3 = ('$%s$' % maksimum)
+    data4 = ('$%s$' % kasvab) #ei tööta
+
+    pl.text(15, -10, data1)
+    pl.text(15, -6, data2)
+    pl.text(15, -4, data3)
+    pl.text(15, -2, data4)
+
+    pl.savefig('graafik.png')
+
     img = PhotoImage(file="graafik.png")
     graaf = Label(image=img)
     graaf.image = img
     graaf.pack(side=RIGHT)
+
+
+    a = '''data = ('fsdfjsdfsdfsdf')
+    plt.text(-15,5,data)
+    plt.axhline(0, color='black')
+    plt.axvline(0, color='black')
+    plt.plot(x, y)
+    init_printing(use_latex='mathjax')
+    x = symbols('x')
+    lateks = latex(eval(formula))
+    plt.title('$%s$' % lateks, fontsize=25)
+
+    plt.savefig('graafik.png')
+    img = PhotoImage(file="graafik.png")
+    graaf = Label(image=img)
+    graaf.image = img
+    graaf.pack(side=RIGHT)'''
 
 
 def näita_tulemus():
@@ -207,6 +245,7 @@ def näita_tulemus():
         #
         kasvab_vastus = ttk.Label(raam, text=[' , '.join(leia_kasvamine(valem.get()))], font=('Cambria Math', 10, 'bold'))
         kasvab_vastus.place(x=250, y=390)
+        print(' , '.join(leia_kasvamine(valem.get())))
         # # Töötab hetkel ainult kui on paraboolne funktsioon, kus on ainult 1 vaheldumispunkt (Alpha v0.1)
         kahaneb_string = ttk.Label(raam, text='Kahaneb_ALPHA:', font=('Cambria Math', 10, 'bold'))
         kahaneb_string.place(x=90, y=440)
