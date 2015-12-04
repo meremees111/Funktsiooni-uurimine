@@ -80,18 +80,18 @@ def leia_kasvamine(sisend):
 
         kasvab = []
         for i in intervalid:
-            if '\infty' in i:
+            if '\infty' in i and i[0] != '-\infty':
                 kasvab_parameeter = True
-                for arv in range(int(i[0]), 30):
+                for arv in range([0], 30):
                     if diff(sisend).replace('x', '('+str(arv)+')') < 0:
                         kasvab_parameeter = False
                     else:
                         kasvab_parameeter = True
                 if kasvab_parameeter:
                     kasvab.append(i)
-            if '-\infty' in i:
+            if '-\infty' in i and i[1] != '\infty':
                 kasvab_parameeter = True
-                for arv in range(-30, int(i[1])):
+                for arv in range(-30, i[1]):
                     if diff(sisend).replace('x', '('+str(arv)+')') < 0:
                         kasvab_parameeter = False
                     else:
@@ -100,7 +100,7 @@ def leia_kasvamine(sisend):
                     kasvab.append(i)
             if '\infty' not in i and '-\infty'not in i:
                 kasvab_parameeter = True
-                for arv in range(int(i[0]), int(i[1])):
+                for arv in range(i[0], i[1]):
                     if diff(sisend).replace('x', '('+str(arv)+')') < 0:
                         kasvab_parameeter = False
                     else:
@@ -127,18 +127,18 @@ def leia_kahanemine(sisend):
 
         kahaneb = []
         for i in intervalid:
-            if '\infty' in i:
+            if '\infty' in i and i[0] != '-\infty':
                 kahaneb_parameeter = True
-                for arv in range(int(i[0])+1, 30):
+                for arv in range(i[0], 30):
                     if diff(sisend).replace('x', '('+str(arv)+')') > 0:
                         kahaneb_parameeter = False
                     else:
                         kahaneb_parameeter = True
                 if kahaneb_parameeter:
                     kahaneb.append(i)
-            if '-\infty' in i:
+            if '-\infty' in i and i[1] != '\infty':
                 kahaneb_parameeter = True
-                for arv in range(-30, int(i[1])-1):
+                for arv in range(-30, i[1]):
                     if diff(sisend).replace('x', '('+str(arv)+')') > 0:
                         kahaneb_parameeter = False
                     else:
@@ -147,7 +147,7 @@ def leia_kahanemine(sisend):
                     kahaneb.append(i)
             if '\infty' not in i and '-\infty'not in i:
                 kahaneb_parameeter = True
-                for arv in range(int(i[0]), int(i[1])):
+                for arv in range(i[0], i[1]):
                     if diff(sisend).replace('x', '('+str(arv)+')') > 0:
                         kahaneb_parameeter = False
                     else:
@@ -176,18 +176,18 @@ def leia_kumerus(sisend):
 
         kumer = []
         for i in intervalid:
-            if '\infty' in i:
+            if '\infty' in i and i[0] != '-\infty':
                 kumer_parameeter = True
-                for arv in range(int(i[0]+1), 30):
+                for arv in range(i[0], 30):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
                         kumer_parameeter = False
                     else:
                         kumer_parameeter = True
                 if kumer_parameeter:
                     kumer.append(i)
-            if '-\infty' in i:
+            if '-\infty' in i and i[1] != '\infty':
                 kumer_parameeter = True
-                for arv in range(-30, int(i[1])-1):
+                for arv in range(-30, i[1]):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
                         kumer_parameeter = False
                     else:
@@ -196,7 +196,7 @@ def leia_kumerus(sisend):
                     kumer.append(i)
             if '\infty' not in i and '-\infty'not in i:
                 kumer_parameeter = True
-                for arv in range(int(i[0]), int(i[1])):
+                for arv in range(i[0], i[1]):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
                         kumer_parameeter = False
                     else:
@@ -225,18 +225,18 @@ def leia_nõgusus(sisend):
 
         nõgus = []
         for i in intervalid:
-            if '\infty' in i:
+            if '\infty' in i and i[0] != '-\infty':
                 nõgus_parameeter = True
-                for arv in range(int(i[0])+1, 30):
+                for arv in range(i[0], 30):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
                         nõgus_parameeter = False
                     else:
                         nõgus_parameeter = True
                 if nõgus_parameeter:
                     nõgus.append(i)
-            if '-\infty' in i:
+            if '-\infty' in i and i[1] != '\infty':
                 nõgus_parameeter = True
-                for arv in range(-30, int(i[1])-1):
+                for arv in range(-30, i[1]-1):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
                         nõgus_parameeter = False
                     else:
@@ -245,7 +245,7 @@ def leia_nõgusus(sisend):
                     nõgus.append(i)
             if '\infty' not in i and '-\infty'not in i:
                 nõgus_parameeter = True
-                for arv in range(int(i[0]), int(i[1])):
+                for arv in range(i[0], i[1]):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
                         nõgus_parameeter = False
                     else:
