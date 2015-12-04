@@ -280,6 +280,7 @@ def lisa_graafik(formula):
     ax.set_title('Bitwise Operation')
     ax.set_xlabel('axis X')
     ax.set_ylabel('axis Y')
+    fig.set_size_inches(17, 12)
     plt.axhline(0, color='black')
     plt.axvline(0, color='black')
     pl.ylim(-10, 10)
@@ -289,25 +290,37 @@ def lisa_graafik(formula):
     nullkohad = latex(' , '.join(leia_nullkohad(formula)))
     miinimum = latex(' , '.join(leia_miinimum(formula)))
     maksimum = latex(' , '.join(leia_maksimum(formula)))
-    kasvab = latex(('(\infty, 0),(0, \infty)'))
+    kasvab = latex('(\infty, 0)(0, \infty)')
+    kahaneb = latex('\sqrt{20}')
+    kumerus = latex('PLACEHOLDER')
+    nõgusus = latex('PLACEHOLDER')
+    käänukoht = latex('PLACEHOLDER')
 
     plt.title('$%s$' % funktsioon, fontsize=25)
-    data1 = ('$%s$' % nullkohad)
-    data2 = ('$%s$' % miinimum)
-    data3 = ('$%s$' % maksimum)
-    data4 = ('$%s$' % kasvab) #ei tööta
+    data1 = ('Nullkohad: ' + '\n' + '$%s$' % nullkohad)
+    data2 = ('Miinimumkohad: ' + '\n' +  '$%s$' % miinimum)
+    data3 = ('Maksimumkohad: ' + '\n' + '$%s$' % maksimum)
+    data4 = ('Kasvamispiirkond:' + '\n' + '$%s$' % kasvab)
+    data5 = ('Kahanemispiirkond:' + '\n' + '$%s$' % kahaneb)
+    data6 = ('Kumeruspiirkond:' + '\n' + '$%s$' % kumerus)
+    data7 = ('Nõgususpiirkond:' + '\n'+ '$%s$' % nõgusus)
+    data8 = ('Käänukohad:' + '\n'+ '$%s$' % käänukoht)
 
-    pl.text(15, -10, data1)
-    pl.text(15, -6, data2)
-    pl.text(15, -4, data3)
-    pl.text(15, -2, data4)
+    pl.text(11, 8, data1)
+    pl.text(11, 6, data2)
+    pl.text(11, 4, data3)
+    pl.text(11, 2, data4)
+    pl.text(11, 0, data5)
+    pl.text(11, -2, data6)
+    pl.text(11, -4, data7)
+    pl.text(11, -6, data8)
 
-    pl.savefig('graafik.png')
+    pl.savefig('graafik.png', bbox_inches='tight')
 
     img = PhotoImage(file="graafik.png")
     graaf = Label(image=img)
     graaf.image = img
-    graaf.pack(side=RIGHT)
+    graaf.pack(side=BOTTOM)
 
     a = '''data = ('fsdfjsdfsdfsdf')
     plt.text(-15,5,data)
@@ -328,6 +341,7 @@ def lisa_graafik(formula):
 
 def näita_tulemus():
     if valem.get() != '':
+        placeholder = '''
         nullkohad_string = ttk.Label(raam, text='Nullkohad_BETA: ', font=('Cambria Math', 10, 'bold'))
         nullkohad_string.place(x=90, y=240)
 
@@ -351,14 +365,16 @@ def näita_tulemus():
 
         kasvab_vastus = ttk.Label(raam, text=[' , '.join(leia_kasvamine(valem.get()))], font=('Cambria Math', 10, 'bold'))
         kasvab_vastus.place(x=250, y=390)
+        print(' , '.join(leia_kasvamine(valem.get())))
 
-        # # Töötab hetkel ainult kui on paraboolne funktsioon, kus on ainult 1 vaheldumispunkt (Alpha v0.1)
+        
         kahaneb_string = ttk.Label(raam, text='Kahaneb_ALPHA:', font=('Cambria Math', 10, 'bold'))
         kahaneb_string.place(x=90, y=440)
 
         kahaneb_vastus = ttk.Label(raam, text=[' , '.join(leia_kahanemine(valem.get()))], font=('Cambria Math', 10, 'bold'))
         kahaneb_vastus.place(x=250, y=440)
-
+        
+        # See ka töötab, kõik on vist hästi.
         kumerus_string = ttk.Label(raam, text='Kumerus_ALPHA:', font=('Cambria Math', 10, 'bold'))
         kumerus_string.place(x=90, y=490)
 
@@ -375,7 +391,9 @@ def näita_tulemus():
         käänupunkt_string.place(x=90, y=590)
 
         käänupunkt_vastus = ttk.Label(raam, text=leia_käänupunkt(valem.get()), font=('Cambria Math', 10, 'bold'))
-        käänupunkt_vastus.place(x=250, y=590)
+        käänupunkt_vastus.place(x=250, y=590)'''
+
+
         lisa_graafik(valem.get())
 
     else:
@@ -384,13 +402,14 @@ def näita_tulemus():
 
 
 raam = Tk()
-raam.title('PLOTMASTER BASIC ALHPA 0.2.1')
+raam.title('PLOTMASTER BASIC ALPHA 0.3.0')
 kõrgus = 800
 laius = 1300
 raam.geometry(str(laius)+'x'+str(kõrgus))
+raam.configure(background='white')
 
 
-silt = ttk.Label(raam, text='Sisesta oma valem: ',  font=('Cambria Math', 13, 'bold'))
+silt = ttk.Label(raam, text='Sisesta oma valem: ', background='white', font=('Cambria Math', 13, 'bold'))
 silt.place(x=laius/2.3, y=0, width=160, height=60)
 
 valem = ttk.Entry(raam, width=40)
