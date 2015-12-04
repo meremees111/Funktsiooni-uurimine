@@ -280,6 +280,7 @@ def lisa_graafik(formula):
     ax.set_title('Bitwise Operation')
     ax.set_xlabel('axis X')
     ax.set_ylabel('axis Y')
+    fig.set_size_inches(17, 12)
     plt.axhline(0, color='black')
     plt.axvline(0, color='black')
     pl.ylim(-10, 10)
@@ -289,25 +290,25 @@ def lisa_graafik(formula):
     nullkohad = latex(' , '.join(leia_nullkohad(formula)))
     miinimum = latex(' , '.join(leia_miinimum(formula)))
     maksimum = latex(' , '.join(leia_maksimum(formula)))
-    kasvab = latex(('(\infty, 0),(0, \infty)'))
+    kasvab = latex(('(\infty, 0)(0, \infty)'))
 
     plt.title('$%s$' % funktsioon, fontsize=25)
-    data1 = ('$%s$' % nullkohad)
-    data2 = ('$%s$' % miinimum)
-    data3 = ('$%s$' % maksimum)
-    data4 = ('$%s$' % kasvab) #ei tööta
+    data1 = ('Nullkohad: ' + '\n' + '$%s$' % nullkohad)
+    data2 = ('Miinimumkohad: ' + '\n' +  '$%s$' % miinimum)
+    data3 = ('Maksimumkohad: ' + '\n' + '$%s$' % maksimum)
+    data4 = ('Kasvamispiirkond:' + '\n' + '$%s$' % kasvab) #ei tööta
 
-    pl.text(15, -10, data1)
-    pl.text(15, -6, data2)
-    pl.text(15, -4, data3)
-    pl.text(15, -2, data4)
+    pl.text(11, 8, data1)
+    pl.text(11, 6, data2)
+    pl.text(11, 4, data3)
+    pl.text(11, 2, data4)
 
-    pl.savefig('graafik.png')
+    pl.savefig('graafik.png', bbox_inches='tight')
 
     img = PhotoImage(file="graafik.png")
     graaf = Label(image=img)
     graaf.image = img
-    graaf.pack(side=RIGHT)
+    graaf.pack(side=BOTTOM)
 
 
     a = '''data = ('fsdfjsdfsdfsdf')
@@ -329,6 +330,7 @@ def lisa_graafik(formula):
 
 def näita_tulemus():
     if valem.get() != '':
+        placeholder = '''
         nullkohad_string = ttk.Label(raam, text='Nullkohad_BETA: ', font=('Cambria Math', 10, 'bold'))
         nullkohad_string.place(x=90, y=240)
 
@@ -352,6 +354,7 @@ def näita_tulemus():
 
         kasvab_vastus = ttk.Label(raam, text=[' , '.join(leia_kasvamine(valem.get()))], font=('Cambria Math', 10, 'bold'))
         kasvab_vastus.place(x=250, y=390)
+        print(' , '.join(leia_kasvamine(valem.get())))
 
         
         kahaneb_string = ttk.Label(raam, text='Kahaneb_ALPHA:', font=('Cambria Math', 10, 'bold'))
@@ -377,7 +380,7 @@ def näita_tulemus():
         käänupunkt_string.place(x=90, y=590)
 
         käänupunkt_vastus = ttk.Label(raam, text=leia_käänupunkt(valem.get()), font=('Cambria Math', 10, 'bold'))
-        käänupunkt_vastus.place(x=250, y=590)
+        käänupunkt_vastus.place(x=250, y=590)'''
         lisa_graafik(valem.get())
 
     else:
@@ -390,9 +393,10 @@ raam.title('PLOTMASTER BASIC ALHPA 0.2.1')
 kõrgus = 800
 laius = 1300
 raam.geometry(str(laius)+'x'+str(kõrgus))
+raam.configure(background='white')
 
 
-silt = ttk.Label(raam, text='Sisesta oma valem: ',  font=('Cambria Math', 13, 'bold'))
+silt = ttk.Label(raam, text='Sisesta oma valem: ', background='white', font=('Cambria Math', 13, 'bold'))
 silt.place(x=laius/2.3, y=0, width=160, height=60)
 
 valem = ttk.Entry(raam, width=40)
