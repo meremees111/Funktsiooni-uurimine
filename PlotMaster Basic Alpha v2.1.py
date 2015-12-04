@@ -129,7 +129,7 @@ def leia_kahanemine(sisend):
         for i in intervalid:
             if '\infty' in i:
                 kahaneb_parameeter = True
-                for arv in range(int(i[0]), 30):
+                for arv in range(int(i[0])+1, 30):
                     if diff(sisend).replace('x', '('+str(arv)+')') > 0:
                         kahaneb_parameeter = False
                     else:
@@ -138,7 +138,7 @@ def leia_kahanemine(sisend):
                     kahaneb.append(i)
             if '-\infty' in i:
                 kahaneb_parameeter = True
-                for arv in range(-30, int(i[1])):
+                for arv in range(-30, int(i[1])-1):
                     if diff(sisend).replace('x', '('+str(arv)+')') > 0:
                         kahaneb_parameeter = False
                     else:
@@ -178,7 +178,7 @@ def leia_kumerus(sisend):
         for i in intervalid:
             if '\infty' in i:
                 kumer_parameeter = True
-                for arv in range(int(i[0]), 30):
+                for arv in range(int(i[0]+1), 30):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
                         kumer_parameeter = False
                     else:
@@ -187,7 +187,7 @@ def leia_kumerus(sisend):
                     kumer.append(i)
             if '-\infty' in i:
                 kumer_parameeter = True
-                for arv in range(-30, int(i[1])):
+                for arv in range(-30, int(i[1])-1):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
                         kumer_parameeter = False
                     else:
@@ -227,7 +227,7 @@ def leia_nõgusus(sisend):
         for i in intervalid:
             if '\infty' in i:
                 nõgus_parameeter = True
-                for arv in range(int(i[0]), 30):
+                for arv in range(int(i[0])+1, 30):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
                         nõgus_parameeter = False
                     else:
@@ -236,7 +236,7 @@ def leia_nõgusus(sisend):
                     nõgus.append(i)
             if '-\infty' in i:
                 nõgus_parameeter = True
-                for arv in range(-30, int(i[1])):
+                for arv in range(-30, int(i[1])-1):
                     if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
                         nõgus_parameeter = False
                     else:
