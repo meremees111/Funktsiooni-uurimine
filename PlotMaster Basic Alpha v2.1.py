@@ -82,7 +82,7 @@ def leia_kasvamine(sisend):
         for i in intervalid:
             if '\infty' in i and i[0] != '-\infty':
                 kasvab_parameeter = True
-                for arv in range([0], 30):
+                for arv in range(i[0], 30):
                     if diff(sisend).replace('x', '('+str(arv)+')') < 0:
                         kasvab_parameeter = False
                     else:
