@@ -393,6 +393,10 @@ def näita_tulemus():
         käänupunkt_vastus = ttk.Label(raam, text=leia_käänupunkt(valem.get()), font=('Cambria Math', 10, 'bold'))
         käänupunkt_vastus.place(x=250, y=590)'''
 
+        print(' , '.join(leia_kasvamine(valem.get())))
+        print(' , '.join(leia_kahanemine(valem.get())))
+        print(' , '.join(leia_kumerus(valem.get())))
+        print(' , '.join(leia_nõgusus(valem.get())))
 
         lisa_graafik(valem.get())
 
