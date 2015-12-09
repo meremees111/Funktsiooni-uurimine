@@ -6,6 +6,7 @@ import numpy as np
 import pylab as pl
 import os
 from itertools import tee
+import itertools
 import math
 
 x = symbols('x')
@@ -291,15 +292,22 @@ def lisa_graafik(formula):
     nullkohad = latex(' , '.join(leia_nullkohad(formula)))
     miinimum = latex(' , '.join(leia_miinimum(formula)))
     maksimum = latex(' , '.join(leia_maksimum(formula)))
-    kasvab = latex('(\infty, 0)(0, \infty)')
-    kahaneb = latex('\sqrt{20}')
-    kumerus = latex('PLACEHOLDER')
-    nõgusus = latex('PLACEHOLDER')
-    käänukoht = latex('PLACEHOLDER')
+    formatkasvab = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kasvamine(valem.get()))))
+    formatkahaneb = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kahanemine(valem.get()))))
+    formatkumerus = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kumerus(valem.get()))))
+    formatnõgusus = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_nõgusus(valem.get()))))
+    formatkäänukoht = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_käänupunkt(valem.get()))))
+
+    kasvab = formatkasvab.replace("'", "")
+    kahaneb = formatkahaneb.replace("'", "")
+    kumerus = formatkumerus.replace("'", "")
+    nõgusus = formatnõgusus.replace("'", "")
+    käänukoht = formatkäänukoht.replace("'", "")
+
 
     plt.title('$%s$' % funktsioon, fontsize=25)
     data1 = ('Nullkohad: ' + '\n' + '$%s$' % nullkohad)
-    data2 = ('Miinimumkohad: ' + '\n' +  '$%s$' % miinimum)
+    data2 = ('Miinimumkohad: ' + '\n' + '$%s$' % miinimum)
     data3 = ('Maksimumkohad: ' + '\n' + '$%s$' % maksimum)
     data4 = ('Kasvamispiirkond:' + '\n' + '$%s$' % kasvab)
     data5 = ('Kahanemispiirkond:' + '\n' + '$%s$' % kahaneb)
@@ -394,10 +402,10 @@ def näita_tulemus():
         käänupunkt_vastus = ttk.Label(raam, text=leia_käänupunkt(valem.get()), font=('Cambria Math', 10, 'bold'))
         käänupunkt_vastus.place(x=250, y=590)'''
 
-        print(' , '.join(leia_kasvamine(valem.get())))
-        print(' , '.join(leia_kahanemine(valem.get())))
-        print(' , '.join(leia_kumerus(valem.get())))
-        print(' , '.join(leia_nõgusus(valem.get())))
+        #print(' , '.join(leia_kasvamine(valem.get())))
+        #print(' , '.join(leia_kahanemine(valem.get())))
+        #print(' , '.join(leia_kumerus(valem.get())))
+        #print(' , '.join(leia_nõgusus(valem.get())))
 
         lisa_graafik(valem.get())
 
