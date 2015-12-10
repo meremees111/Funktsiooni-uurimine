@@ -310,7 +310,6 @@ def lisa_graafik(formula):
     nõgusus = formatnõgusus.replace("'", "")
     käänukoht = formatkäänukoht.replace("'", "")
 
-
     plt.title('$%s$' % funktsioon, fontsize=25)
     data1 = ('Nullkohad: ' + '\n' + '$%s$' % nullkohad)
     data2 = ('Miinimumkohad: ' + '\n' + '$%s$' % miinimum)
@@ -318,8 +317,8 @@ def lisa_graafik(formula):
     data4 = ('Kasvamispiirkond:' + '\n' + '$%s$' % kasvab)
     data5 = ('Kahanemispiirkond:' + '\n' + '$%s$' % kahaneb)
     data6 = ('Kumeruspiirkond:' + '\n' + '$%s$' % kumerus)
-    data7 = ('Nõgususpiirkond:' + '\n'+ '$%s$' % nõgusus)
-    data8 = ('Käänukohad:' + '\n'+ '$%s$' % käänukoht)
+    data7 = ('Nõgususpiirkond:' + '\n' + '$%s$' % nõgusus)
+    data8 = ('Käänukohad:' + '\n' + '$%s$' % käänukoht)
 
     pl.text(11, 8, data1)
     pl.text(11, 6, data2)
@@ -407,11 +406,6 @@ def näita_tulemus():
 
         käänupunkt_vastus = ttk.Label(raam, text=leia_käänupunkt(valem.get()), font=('Cambria Math', 10, 'bold'))
         käänupunkt_vastus.place(x=250, y=590)'''
-
-        # print(' , '.join(leia_kasvamine(valem.get())))
-        # print(' , '.join(leia_kahanemine(valem.get())))
-        # print(' , '.join(leia_kumerus(valem.get())))
-        # print(' , '.join(leia_nõgusus(valem.get())))
 
         lisa_graafik(valem.get())
 
