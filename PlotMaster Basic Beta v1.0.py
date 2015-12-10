@@ -166,7 +166,7 @@ def leia_kahanemine(sisend):
 
 def leia_kumerus(sisend):
     if diff(diff(sisend, x), x) != 0:
-        if 'x' not in diff(diff(sisend, x), x):
+        if 'x' not in str(diff(diff(sisend, x), x)):
             if float(diff(diff(sisend, x), x)) < 0:
                 return ['-\infty', '\infty']
         else:
@@ -219,7 +219,7 @@ def leia_kumerus(sisend):
 
 def leia_nõgusus(sisend):
     if diff(diff(sisend, x), x) != 0:
-        if 'x' not in diff(diff(sisend, x), x):
+        if 'x' not in str(diff(diff(sisend, x), x)):
             if float(diff(diff(sisend, x), x)) > 0:
                 return ['-\infty', '\infty']
         else:
