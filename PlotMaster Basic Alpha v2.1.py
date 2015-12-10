@@ -165,99 +165,105 @@ def leia_kahanemine(sisend):
 
 
 def leia_kumerus(sisend):
-    if diff(diff(sisend, x), x) != 0 and not str(sisend).isnumeric():
-        vaheldus_piirkond = solve(diff(diff(sisend, x), x))
-        algne_list = ['-\infty', '\infty']
-
-        for i in range(len(vaheldus_piirkond)):
-            algne_list.insert(1, vaheldus_piirkond[i-1])
-
-        intervalid = []
-        for paar in paarideks(algne_list):
-            intervalid.append(paar)
-
-        kumer = []
-        for i in intervalid:
-            if '\infty' in i and i[0] != '-\infty':
-                kumer_parameeter = True
-                for arv in range(math.ceil(i[0]), 30):
-                    if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
-                        kumer_parameeter = False
-                    else:
-                        kumer_parameeter = True
-                if kumer_parameeter:
-                    kumer.append(i)
-            if '-\infty' in i and i[1] != '\infty':
-                kumer_parameeter = True
-                for arv in range(-30, math.floor(i[1])):
-                    if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
-                        kumer_parameeter = False
-                    else:
-                        kumer_parameeter = True
-                if kumer_parameeter:
-                    kumer.append(i)
-            if '\infty' not in i and '-\infty'not in i:
-                kumer_parameeter = True
-                for arv in range(math.ceil(i[0]), math.floor(i[1])):
-                    if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
-                        kumer_parameeter = False
-                    else:
-                        kumer_parameeter = True
-                if kumer_parameeter:
-                    kumer.append(i)
-        if len(kumer) > 0:
-            return list(map(str, list(kumer)))
+    if diff(diff(sisend, x), x) != 0:
+        if diff(diff(sisend, x), x) < 0:
+            return ['-\infty', '\infty']
         else:
-            return ['Puduub']
+            vaheldus_piirkond = solve(diff(diff(sisend, x), x))
+            algne_list = ['-\infty', '\infty']
+
+            for i in range(len(vaheldus_piirkond)):
+                algne_list.insert(1, vaheldus_piirkond[i-1])
+
+            intervalid = []
+            for paar in paarideks(algne_list):
+                intervalid.append(paar)
+
+            kumer = []
+            for i in intervalid:
+                if '\infty' in i and i[0] != '-\infty':
+                    kumer_parameeter = True
+                    for arv in range(math.ceil(i[0]), 30):
+                        if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
+                            kumer_parameeter = False
+                        else:
+                            kumer_parameeter = True
+                    if kumer_parameeter:
+                        kumer.append(i)
+                if '-\infty' in i and i[1] != '\infty':
+                    kumer_parameeter = True
+                    for arv in range(-30, math.floor(i[1])):
+                        if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
+                            kumer_parameeter = False
+                        else:
+                            kumer_parameeter = True
+                    if kumer_parameeter:
+                        kumer.append(i)
+                if '\infty' not in i and '-\infty'not in i:
+                    kumer_parameeter = True
+                    for arv in range(math.ceil(i[0]), math.floor(i[1])):
+                        if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') > 0:
+                            kumer_parameeter = False
+                        else:
+                            kumer_parameeter = True
+                    if kumer_parameeter:
+                        kumer.append(i)
+            if len(kumer) > 0:
+                return list(map(str, list(kumer)))
+            else:
+                return ['Puduub']
     else:
         return ['Puudub']
 
 
 def leia_nõgusus(sisend):
-    if diff(diff(sisend, x), x) != 0 and not str(sisend).isnumeric():
-        vaheldus_piirkond = solve(diff(diff(sisend, x), x))
-        algne_list = ['-\infty', '\infty']
-
-        for i in range(len(vaheldus_piirkond)):
-            algne_list.insert(1, vaheldus_piirkond[i-1])
-
-        intervalid = []
-        for paar in paarideks(algne_list):
-            intervalid.append(paar)
-
-        nõgus = []
-        for i in intervalid:
-            if '\infty' in i and i[0] != '-\infty':
-                nõgus_parameeter = True
-                for arv in range(math.ceil(i[0]), 30):
-                    if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
-                        nõgus_parameeter = False
-                    else:
-                        nõgus_parameeter = True
-                if nõgus_parameeter:
-                    nõgus.append(i)
-            if '-\infty' in i and i[1] != '\infty':
-                nõgus_parameeter = True
-                for arv in range(-30, math.floor(i[1])):
-                    if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
-                        nõgus_parameeter = False
-                    else:
-                        nõgus_parameeter = True
-                if nõgus_parameeter:
-                    nõgus.append(i)
-            if '\infty' not in i and '-\infty'not in i:
-                nõgus_parameeter = True
-                for arv in range(math.ceil(i[0]), math.floor(i[1])):
-                    if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
-                        nõgus_parameeter = False
-                    else:
-                        nõgus_parameeter = True
-                if nõgus_parameeter:
-                    nõgus.append(i)
-        if len(nõgus) > 0:
-            return list(map(str, list(nõgus)))
+    if diff(diff(sisend, x), x) != 0:
+        if diff(diff(sisend, x), x) > 0:
+            return ['-\infty', '\infty']
         else:
-            return ['Puduub']
+            vaheldus_piirkond = solve(diff(diff(sisend, x), x))
+            algne_list = ['-\infty', '\infty']
+
+            for i in range(len(vaheldus_piirkond)):
+                algne_list.insert(1, vaheldus_piirkond[i-1])
+
+            intervalid = []
+            for paar in paarideks(algne_list):
+                intervalid.append(paar)
+
+            nõgus = []
+            for i in intervalid:
+                if '\infty' in i and i[0] != '-\infty':
+                    nõgus_parameeter = True
+                    for arv in range(math.ceil(i[0]), 30):
+                        if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
+                            nõgus_parameeter = False
+                        else:
+                            nõgus_parameeter = True
+                    if nõgus_parameeter:
+                        nõgus.append(i)
+                if '-\infty' in i and i[1] != '\infty':
+                    nõgus_parameeter = True
+                    for arv in range(-30, math.floor(i[1])):
+                        if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
+                            nõgus_parameeter = False
+                        else:
+                            nõgus_parameeter = True
+                    if nõgus_parameeter:
+                        nõgus.append(i)
+                if '\infty' not in i and '-\infty'not in i:
+                    nõgus_parameeter = True
+                    for arv in range(math.ceil(i[0]), math.floor(i[1])):
+                        if diff(diff(sisend, x), x).replace('x', '('+str(arv)+')') < 0:
+                            nõgus_parameeter = False
+                        else:
+                            nõgus_parameeter = True
+                    if nõgus_parameeter:
+                        nõgus.append(i)
+            if len(nõgus) > 0:
+                return list(map(str, list(nõgus)))
+            else:
+                return ['Puduub']
     else:
         return ['Puudub']
 
@@ -402,10 +408,10 @@ def näita_tulemus():
         käänupunkt_vastus = ttk.Label(raam, text=leia_käänupunkt(valem.get()), font=('Cambria Math', 10, 'bold'))
         käänupunkt_vastus.place(x=250, y=590)'''
 
-        #print(' , '.join(leia_kasvamine(valem.get())))
-        #print(' , '.join(leia_kahanemine(valem.get())))
-        #print(' , '.join(leia_kumerus(valem.get())))
-        #print(' , '.join(leia_nõgusus(valem.get())))
+        # print(' , '.join(leia_kasvamine(valem.get())))
+        # print(' , '.join(leia_kahanemine(valem.get())))
+        # print(' , '.join(leia_kumerus(valem.get())))
+        # print(' , '.join(leia_nõgusus(valem.get())))
 
         lisa_graafik(valem.get())
 
