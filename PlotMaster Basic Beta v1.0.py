@@ -169,7 +169,7 @@ def leia_kumerus(sisend):
         if 'x' not in str(diff(diff(sisend, x), x)):
             if float(diff(diff(sisend, x), x)) < 0:
                 return ['-\infty', '\infty']
-        else:
+        if 'x' in str(diff(diff(sisend, x), x)):
             vaheldus_piirkond = solve(diff(diff(sisend, x), x))
             algne_list = ['-\infty', '\infty']
 
@@ -212,7 +212,9 @@ def leia_kumerus(sisend):
             if len(kumer) > 0:
                 return list(map(str, list(kumer)))
             else:
-                return ['Puduub']
+                return ['Puudub']
+        else:
+            return ['Puduub']
     else:
         return ['Puudub']
 
@@ -222,7 +224,7 @@ def leia_nõgusus(sisend):
         if 'x' not in str(diff(diff(sisend, x), x)):
             if float(diff(diff(sisend, x), x)) > 0:
                 return ['-\infty', '\infty']
-        else:
+        if 'x' in str(diff(diff(sisend, x), x)):
             vaheldus_piirkond = solve(diff(diff(sisend, x), x))
             algne_list = ['-\infty', '\infty']
 
@@ -266,6 +268,8 @@ def leia_nõgusus(sisend):
                 return list(map(str, list(nõgus)))
             else:
                 return ['Puduub']
+        else:
+            return ['Puduub']
     else:
         return ['Puudub']
 
