@@ -295,16 +295,27 @@ def lisa_graafik(formula):
     fig = pl.figure()
     ax = fig.add_axes([0.1, 0.2, 0.4, 0.4])
     x = np.arange(-10, 10, 0.1)
+    ax.tick_params(axis='x', labelsize=8)
+    ax.tick_params(axis='y', labelsize=8)
     y = eval(formula)
     ax.plot(x, y)
-    ax.set_title('Bitwise Operation')
-    ax.set_xlabel('axis X')
-    ax.set_ylabel('axis Y')
-    fig.set_size_inches(17, 12)
-    plt.axhline(0, color='black')
-    plt.axvline(0, color='black')
+    pl.grid()
+    pl.xticks(np.arange(-10,10,1))
+    pl.yticks(np.arange(-10,10,1))
+    #pl.xticks(np.arange(min(x), max(x)+1, 1.0))
+    #pl.yticks(np.arange(min(y), max(y)+1, 1.0))
     pl.ylim(-10, 10)
+    fig.set_size_inches(17, 12)
     x = symbols('x')
+
+    ax.spines['left'].set_position('zero')
+    ax.spines['right'].set_color('none')
+    ax.spines['bottom'].set_position('zero')
+    ax.spines['top'].set_color('none')
+    ax.spines['left'].set_smart_bounds(True)
+    ax.spines['bottom'].set_smart_bounds(True)
+    ax.xaxis.set_ticks_position('bottom')
+    ax.yaxis.set_ticks_position('left')
 
     funktsioon = latex(eval(formula))
     nullkohad = latex(eval(' , '.join(leia_nullkohad(formula))))
@@ -365,7 +376,7 @@ raam.title('PLOTMASTER BASIC BETA 1.1')
 raam.configure(background='white')
 
 laius = 1300
-kõrgus = 800
+kõrgus = 750
 
 ekraanilaius = raam.winfo_screenwidth()
 ekraanikõrgus = raam.winfo_screenheight()
