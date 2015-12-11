@@ -165,7 +165,7 @@ def leia_kahanemine(sisend):
         if len(kahaneb) > 0:
             return list(map(str, list(kahaneb)))
         else:
-            return ['Puduub']
+            return ['Puudub']
     else:
         return ['Puudub']
 
@@ -308,8 +308,7 @@ def lisa_graafik(formula):
 
     funktsioon = latex(eval(formula))
     nullkohad = latex(eval(' , '.join(leia_nullkohad(formula))))
-    miinimum = latex('\sqrt{3}')
-    #miinimum = latex(' , '.join(leia_miinimum(formula)))
+    miinimum = latex(' , '.join(leia_miinimum(formula)))
     maksimum = latex(' , '.join(leia_maksimum(formula)))
     formatkasvab = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kasvamine(valem.get()))))
     formatkahaneb = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kahanemine(valem.get()))))
@@ -334,91 +333,25 @@ def lisa_graafik(formula):
     data8 = ('Käänukohad:' + '\n' + '$%s$' % käänukoht)
 
     pl.text(11, 8, data1)
-    pl.text(11, 6, data2)
-    pl.text(11, 4, data3)
-    pl.text(11, 2, data4)
-    pl.text(11, 0, data5)
-    pl.text(11, -2, data6)
-    pl.text(11, -4, data7)
-    pl.text(11, -6, data8)
+    pl.text(11, 5.5, data2)
+    pl.text(11, 3, data3)
+    pl.text(11, 0.5, data4)
+    pl.text(11, -2, data5)
+    pl.text(11, -4.5, data6)
+    pl.text(11, -7, data7)
+    pl.text(11, -9.5, data8)
 
     pl.savefig('graafik.png', bbox_inches='tight')
 
     img = PhotoImage(file="graafik.png")
     graaf = Label(image=img)
     graaf.image = img
-    graaf.pack(side=BOTTOM)
+    graaf.pack(side=BOTTOM)'
 
-    a = '''data = ('fsdfjsdfsdfsdf')
-    plt.text(-15,5,data)
-    plt.axhline(0, color='black')
-    plt.axvline(0, color='black')
-    plt.plot(x, y)
-    init_printing(use_latex='mathjax')
-    x = symbols('x')
-    lateks = latex(eval(formula))
-    plt.title('$%s$' % lateks, fontsize=25)
-
-    plt.savefig('graafik.png')
-    img = PhotoImage(file="graafik.png")
-    graaf = Label(image=img)
-    graaf.image = img
-    graaf.pack(side=RIGHT)'''
 
 
 def näita_tulemus():
     if valem.get() != '':
-        placeholder = '''
-        nullkohad_string = ttk.Label(raam, text='Nullkohad_BETA: ', font=('Cambria Math', 10, 'bold'))
-        nullkohad_string.place(x=90, y=240)
-
-        nullkohad_vastus = ttk.Label(raam, text=[' , '.join(leia_nullkohad(valem.get()))], font=('Cambria Math', 10, 'bold'))
-        nullkohad_vastus.place(x=250, y=240)
-        # Tegin ekstreemumite leidmist korda, peaks nüüd korrektselt töötama
-        miinimum_string = ttk.Label(raam, text='Miinimum_BETA:', font=('Cambria Math', 10, 'bold'))
-        miinimum_string.place(x=90, y=290)
-
-        minimum_vastus = ttk.Label(raam, text=[' , '.join(leia_miinimum(valem.get()))], font=('Cambria Math', 10, 'bold'))
-        minimum_vastus.place(x=250, y=290)
-
-        maksimum_string = ttk.Label(raam, text='Maksimum_BETA:', font=('Cambria Math', 10, 'bold'))
-        maksimum_string.place(x=90, y=340)
-
-        maksimum_vastus = ttk.Label(raam, text=[' , '.join(leia_maksimum(valem.get()))], font=('Cambria Math', 10, 'bold'))
-        maksimum_vastus.place(x=250, y=340)
-        # Töötab minu arust korralikult, kuni kumeruseni.
-        kasvab_string = ttk.Label(raam, text='Kasvab_ALPHA:', font=('Cambria Math', 10, 'bold'))
-        kasvab_string.place(x=90, y=390)
-
-        kasvab_vastus = ttk.Label(raam, text=[' , '.join(leia_kasvamine(valem.get()))], font=('Cambria Math', 10, 'bold'))
-        kasvab_vastus.place(x=250, y=390)
-        print(' , '.join(leia_kasvamine(valem.get())))
-
-        
-        kahaneb_string = ttk.Label(raam, text='Kahaneb_ALPHA:', font=('Cambria Math', 10, 'bold'))
-        kahaneb_string.place(x=90, y=440)
-
-        kahaneb_vastus = ttk.Label(raam, text=[' , '.join(leia_kahanemine(valem.get()))], font=('Cambria Math', 10, 'bold'))
-        kahaneb_vastus.place(x=250, y=440)
-        
-        # See ka töötab, kõik on vist hästi.
-        kumerus_string = ttk.Label(raam, text='Kumerus_ALPHA:', font=('Cambria Math', 10, 'bold'))
-        kumerus_string.place(x=90, y=490)
-
-        kumerus_vastus = ttk.Label(raam, text=[' , '.join(leia_kumerus(valem.get()))], font=('Cambria Math', 10, 'bold'))
-        kumerus_vastus.place(x=250, y=490)
-
-        nõgusus_string = ttk.Label(raam, text='Nõgusus:_ALPHA', font=('Cambria Math', 10, 'bold'))
-        nõgusus_string.place(x=90, y=540)
-
-        nõgusus_vastus = ttk.Label(raam, text=[' , '.join(leia_nõgusus(valem.get()))], font=('Cambria Math', 10, 'bold'))
-        nõgusus_vastus.place(x=250, y=540)
-
-        käänupunkt_string = ttk.Label(raam, text='Käänupunkt_ALPHA:', font=('Cambria Math', 10, 'bold'))
-        käänupunkt_string.place(x=90, y=590)
-
-        käänupunkt_vastus = ttk.Label(raam, text=leia_käänupunkt(valem.get()), font=('Cambria Math', 10, 'bold'))
-        käänupunkt_vastus.place(x=250, y=590)'''
 
         lisa_graafik(valem.get())
 
@@ -428,11 +361,19 @@ def näita_tulemus():
 
 
 raam = Tk()
-raam.title('PLOTMASTER BASIC ALPHA 0.3.0')
-kõrgus = 800
-laius = 1300
-raam.geometry(str(laius)+'x'+str(kõrgus))
+raam.title('PLOTMASTER BASIC BETA 1.1')
 raam.configure(background='white')
+
+laius = 1300
+kõrgus = 800
+
+ekraanilaius = raam.winfo_screenwidth()
+ekraanikõrgus = raam.winfo_screenheight()
+
+xkord = (ekraanilaius/2) - (laius/2)
+ykord = (ekraanikõrgus/2) - (kõrgus/2)
+
+raam.geometry('%dx%d+%d+%d' % (laius, kõrgus, xkord, ykord))
 
 
 silt = ttk.Label(raam, text='Sisesta oma valem: ', background='white', font=('Cambria Math', 13, 'bold'))
