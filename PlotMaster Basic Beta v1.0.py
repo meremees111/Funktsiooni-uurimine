@@ -346,7 +346,7 @@ def lisa_graafik(formula):
     img = PhotoImage(file="graafik.png")
     graaf = Label(image=img)
     graaf.image = img
-    graaf.pack(side=BOTTOM)'
+    graaf.pack(side=BOTTOM)
 
 
 
@@ -385,6 +385,13 @@ valem.place(x=laius/2.53, y=70, width=250, height=60)
 arvuta_nupp = ttk.Button(raam, text='Arvuta!', command=näita_tulemus)
 arvuta_nupp.place(x=laius/2.25, y=140, width=130, height=40)
 
+def restart():
+    python = sys.executable
+    os.execl(python, python, * sys.argv)
+
+
+uus_funktsioon = Button(raam, text='Uus funktsioon', command=restart)
+uus_funktsioon.place(x=laius/1.5, y=140, width=130, height=40)
 
 def on_closing():
     if os.path.isfile('graafik.png'):
