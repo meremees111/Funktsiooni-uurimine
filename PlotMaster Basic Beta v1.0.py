@@ -23,7 +23,7 @@ def leia_nullkohad(sisend):
     if len(vastus) > 0:
         return list(map(str, vastus))
     else:
-        return ['Puduub']
+        return ['Puudub']
 
 
 def lahenda_võrrand(sisend):
