@@ -17,7 +17,13 @@ def leia_nullkohad(sisend):
     nullkohad = solve(sisend, x)
     for i in nullkohad:
         vastus.append((i, 0))
-    return list(map(str, vastus))
+    for element in vastus:
+        if 'I' in element:
+            vastus.remove(element)
+    if len(vastus) > 0:
+        return list(map(str, vastus))
+    else:
+        return ['Puduub']
 
 
 def lahenda_võrrand(sisend):
