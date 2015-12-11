@@ -322,12 +322,18 @@ def lisa_graafik(formula):
     miinimum = latex(' , '.join(leia_miinimum(formula)))
     maksimum = latex(' , '.join(leia_maksimum(formula)))
     formatkasvab = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kasvamine(valem.get()))))
+    print(type(formatkasvab))
     formatkahaneb = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kahanemine(valem.get()))))
     formatkumerus = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kumerus(valem.get()))))
     formatnõgusus = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_nõgusus(valem.get()))))
     formatkäänukoht = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_käänupunkt(valem.get()))))
 
-    kasvab = latex(formatkasvab.replace("'", ""))
+    #TODO:
+    #eval ei tööta siis, kui asja sees on string, näiteks 'puudub' või 'infty'
+    #evalile ei meeldi, kui stringis on \ sümbol
+    #eval tagastab floate päris haige komakohage
+
+    kasvab = latex(eval(formatkasvab.replace("'", "").replace('\infty', 'inf')))
     kahaneb = formatkahaneb.replace("'", "")
     kumerus = formatkumerus.replace("'", "")
     nõgusus = formatnõgusus.replace("'", "")
