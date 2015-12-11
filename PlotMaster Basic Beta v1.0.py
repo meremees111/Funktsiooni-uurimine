@@ -307,8 +307,9 @@ def lisa_graafik(formula):
     x = symbols('x')
 
     funktsioon = latex(eval(formula))
-    nullkohad = latex(' , '.join(leia_nullkohad(formula)))
-    miinimum = latex(' , '.join(leia_miinimum(formula)))
+    nullkohad = latex(eval(' , '.join(leia_nullkohad(formula))))
+    miinimum = latex('\sqrt{3}')
+    #miinimum = latex(' , '.join(leia_miinimum(formula)))
     maksimum = latex(' , '.join(leia_maksimum(formula)))
     formatkasvab = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kasvamine(valem.get()))))
     formatkahaneb = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kahanemine(valem.get()))))
@@ -316,7 +317,7 @@ def lisa_graafik(formula):
     formatnõgusus = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_nõgusus(valem.get()))))
     formatkäänukoht = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_käänupunkt(valem.get()))))
 
-    kasvab = formatkasvab.replace("'", "")
+    kasvab = latex(formatkasvab.replace("'", ""))
     kahaneb = formatkahaneb.replace("'", "")
     kumerus = formatkumerus.replace("'", "")
     nõgusus = formatnõgusus.replace("'", "")
