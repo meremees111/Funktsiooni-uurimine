@@ -378,6 +378,11 @@ def näita_tulemus():
 
 raam = Tk()
 raam.title('PLOTMASTER BASIC BETA 1.1')
+
+background_image=PhotoImage(file="bgV2.gif")
+background_label = Label(raam, image=background_image)
+background_label.place(x=-0, y=0)
+
 raam.configure(background='white')
 
 laius = 1300
@@ -391,23 +396,22 @@ ykord = (ekraanikõrgus/2) - (kõrgus/2)
 
 raam.geometry('%dx%d+%d+%d' % (laius, kõrgus, xkord, ykord))
 
-
-silt = ttk.Label(raam, text='Sisesta oma valem: ', background='white', font=('Cambria Math', 13, 'bold'))
-silt.place(x=laius/2.3, y=0, width=160, height=60)
+#silt = ttk.Label(raam, text='Sisesta oma valem: ', background='white', font=('Cambria Math', 13, 'bold'))
+#silt.place(x=laius/2.3, y=0, width=160, height=60)
 
 valem = ttk.Entry(raam, width=40)
-valem.place(x=laius/2.53, y=70, width=250, height=60)
+valem.place(x=laius/2.53, y=70, width=265, height=60)
 
 arvuta_nupp = ttk.Button(raam, text='Arvuta!', command=näita_tulemus)
-arvuta_nupp.place(x=laius/2.25, y=140, width=130, height=40)
+arvuta_nupp.place(x=laius/2.53, y=140, width=130, height=40)
 
 def restart():
     python = sys.executable
     os.execl(python, python, * sys.argv)
 
 
-uus_funktsioon = Button(raam, text='Uus funktsioon', command=restart)
-uus_funktsioon.place(x=laius/1.5, y=140, width=130, height=40)
+uus_funktsioon = ttk.Button(raam, text='Uus funktsioon', command=restart)
+uus_funktsioon.place(x=laius/2.0, y=140, width=130, height=40)
 
 def on_closing():
     if os.path.isfile('graafik.png'):
