@@ -16,10 +16,8 @@ def leia_nullkohad(sisend):
     vastus = []
     nullkohad = solve(sisend, x)
     for i in nullkohad:
-        vastus.append((i, 0))
-    for element in vastus:
-        if 'I' in element:
-            vastus.remove(element)
+        if 'I' not in str(i):
+            vastus.append((i, 0))
     if len(vastus) > 0:
         return list(map(str, vastus))
     else:
