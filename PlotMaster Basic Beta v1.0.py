@@ -118,7 +118,7 @@ def leia_kasvamine(sisend):
 
         return list(map(str, list(kasvab)))
     else:
-        return ['Puduub']
+        return ['Puudub']
 
 
 def leia_kahanemine(sisend):
@@ -220,7 +220,7 @@ def leia_kumerus(sisend):
             else:
                 return ['Puudub']
         else:
-            return ['Puduub']
+            return ['Puudub']
     else:
         return ['Puudub']
 
@@ -273,9 +273,9 @@ def leia_nõgusus(sisend):
             if len(nõgus) > 0:
                 return list(map(str, list(nõgus)))
             else:
-                return ['Puduub']
+                return ['Puudub']
         else:
-            return ['Puduub']
+            return ['Puudub']
     else:
         return ['Puudub']
 
@@ -288,7 +288,7 @@ def leia_käänupunkt(sisend):
             vastus.append((i, eval(sisend.replace('x', '('+str(i)+')'))))
         return list(map(str, vastus))
     else:
-        return ['Puduub']
+        return ['Puudub']
 
 
 def lisa_graafik(formula):
@@ -327,10 +327,10 @@ def lisa_graafik(formula):
     formatnõgusus = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_nõgusus(valem.get()))))
     formatkäänukoht = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_käänupunkt(valem.get()))))
 
-    #TODO:
-    #eval ei tööta siis, kui asja sees on string, näiteks 'puudub' või 'infty'
-    #evalile ei meeldi, kui stringis on \ sümbol
-    #eval tagastab floate päris haige komakohaga
+    # TODO:
+    # eval ei tööta siis, kui asja sees on string, näiteks 'puudub' või 'infty'
+    # evalile ei meeldi, kui stringis on \ sümbol
+    # eval tagastab floate päris haige komakohaga
 
     kasvab = formatkasvab.replace("'", "")
     kahaneb = formatkahaneb.replace("'", "")
