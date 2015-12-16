@@ -1,3 +1,5 @@
+# https://github.com/meremees111/Funktsiooni-uurimine
+
 from tkinter import *
 from tkinter import ttk
 from sympy import *
