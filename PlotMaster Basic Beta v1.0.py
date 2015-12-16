@@ -80,10 +80,11 @@ def leia_kasvamine(sisend):
         for paar in paarideks(algne_list):
             intervalid.append(paar)
 
+        global kasvab
         kasvab = []
         for i in intervalid:
+            kasvab_parameeter = True
             if '\infty' in i and i[0] != '-\infty':
-                kasvab_parameeter = True
                 for arv in range(math.ceil(i[0]), 30):
                     if diff(sisend).replace('x', '('+str(arv)+')') < 0:
                         kasvab_parameeter = False
@@ -92,7 +93,6 @@ def leia_kasvamine(sisend):
                 if kasvab_parameeter:
                     kasvab.append(i)
             if '-\infty' in i and i[1] != '\infty':
-                kasvab_parameeter = True
                 for arv in range(-30, math.floor(i[1])):
                     if diff(sisend).replace('x', '('+str(arv)+')') < 0:
                         kasvab_parameeter = False
@@ -109,8 +109,14 @@ def leia_kasvamine(sisend):
                         kasvab_parameeter = True
                 if kasvab_parameeter:
                     kasvab.append(i)
-
-        return list(map(str, list(kasvab)))
+        if len(kasvab) > len(leia_kahanemine(valem.get())):
+            for i in kasvab:
+                if str(i) in leia_kahanemine(valem.get()):
+                    kasvab.remove(i)
+        if len(kasvab) > 0:
+            return list(map(str, list(kasvab)))
+        else:
+            return ['Puudub']
     else:
         return ['Puudub']
 
@@ -129,8 +135,8 @@ def leia_kahanemine(sisend):
 
         kahaneb = []
         for i in intervalid:
+            kahaneb_parameeter = True
             if '\infty' in i and i[0] != '-\infty':
-                kahaneb_parameeter = True
                 for arv in range(math.ceil(i[0]), 30):
                     if diff(sisend).replace('x', '('+str(arv)+')') > 0:
                         kahaneb_parameeter = False
@@ -139,7 +145,6 @@ def leia_kahanemine(sisend):
                 if kahaneb_parameeter:
                     kahaneb.append(i)
             if '-\infty' in i and i[1] != '\infty':
-                kahaneb_parameeter = True
                 for arv in range(-30, math.floor(i[1])):
                     if diff(sisend).replace('x', '('+str(arv)+')') > 0:
                         kahaneb_parameeter = False
@@ -148,7 +153,6 @@ def leia_kahanemine(sisend):
                 if kahaneb_parameeter:
                     kahaneb.append(i)
             if '\infty' not in i and '-\infty'not in i:
-                kahaneb_parameeter = True
                 for arv in range(math.ceil(i[0]), math.floor(i[1])):
                     if diff(sisend).replace('x', '('+str(arv)+')') > 0:
                         kahaneb_parameeter = False
@@ -156,6 +160,9 @@ def leia_kahanemine(sisend):
                         kahaneb_parameeter = True
                 if kahaneb_parameeter:
                     kahaneb.append(i)
+        for i in kahaneb:
+            if str(i) in kasvab:
+                kahaneb.remove(i)
         if len(kahaneb) > 0:
             return list(map(str, list(kahaneb)))
         else:
