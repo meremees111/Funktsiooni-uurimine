@@ -338,10 +338,34 @@ def lisa_graafik(formula):
         maksimum = latex(eval(' , '.join(leia_maksimum(formula))))
 
     formatkasvab = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kasvamine(valem.get()))))
+    if 'Pudub' in formatkasvab:
+        formatkasvab = 'Puudub'
+    else:
+        formatkasvab = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kasvamine(valem.get()))))
+
     formatkahaneb = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kahanemine(valem.get()))))
+    if 'Pudub' in formatkahaneb:
+        formatkahaneb = 'Puudub'
+    else:
+        formatkahaneb = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kahanemine(valem.get()))))
+
     formatkumerus = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kumerus(valem.get()))))
+    if 'Pudub' in formatkumerus:
+        formatkumerus = 'Puudub'
+    else:
+        formatkumerus = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kumerus(valem.get()))))
+
     formatnõgusus = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_nõgusus(valem.get()))))
+    if 'Pudub' in formatnõgusus:
+        formatnõgusus = 'Puudub'
+    else:
+        formatnõgusus = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_nõgusus(valem.get()))))
+
     formatkäänukoht = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_käänupunkt(valem.get()))))
+    if 'Pudub' in formatkäänukoht:
+        formatkäänukoht = 'Puudub'
+    else:
+        formatkäänukoht = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_käänupunkt(valem.get()))))
 
     # TODO:
     # eval ei tööta siis, kui asja sees on string, näiteks 'puudub' või 'infty'
