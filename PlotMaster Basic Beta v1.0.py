@@ -296,8 +296,6 @@ def lisa_graafik(formula):
     pl.grid()
     pl.xticks(np.arange(-10,10,1))
     pl.yticks(np.arange(-10,10,1))
-    #pl.xticks(np.arange(min(x), max(x)+1, 1.0))
-    #pl.yticks(np.arange(min(y), max(y)+1, 1.0))
     pl.ylim(-10, 10)
     fig.set_size_inches(17, 12)
     x = symbols('x')
@@ -311,10 +309,27 @@ def lisa_graafik(formula):
     ax.xaxis.set_ticks_position('bottom')
     ax.yaxis.set_ticks_position('left')
 
+
     funktsioon = latex(eval(formula))
+
     nullkohad = latex(' , '.join(leia_nullkohad(formula)))
+    if 'Puudub' in nullkohad:
+        nullkohad = latex(' , '.join(leia_nullkohad(formula)))
+    else:
+        nullkohad = latex(eval(' , '.join(leia_nullkohad(formula))))
+
     miinimum = latex(' , '.join(leia_miinimum(formula)))
+    if 'Puudub' in miinimum:
+        miinimum = latex(' , '.join(leia_miinimum(formula)))
+    else:
+        miinimum = latex(eval(' , '.join(leia_miinimum(formula))))
+
     maksimum = latex(' , '.join(leia_maksimum(formula)))
+    if 'Puudub' in maksimum:
+        maksimum = latex(' , '.join(leia_maksimum(formula)))
+    else:
+        maksimum = latex(eval(' , '.join(leia_maksimum(formula))))
+
     formatkasvab = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kasvamine(valem.get()))))
     formatkahaneb = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kahanemine(valem.get()))))
     formatkumerus = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kumerus(valem.get()))))
@@ -353,6 +368,7 @@ def lisa_graafik(formula):
 
     pl.savefig('graafik.png', bbox_inches='tight')
 
+    global img
     img = PhotoImage(file="graafik.png")
     graaf = Label(image=img)
     graaf.image = img
@@ -369,44 +385,6 @@ def näita_tulemus():
         tühi_sisend = ttk.Label(raam, text='Sisend on tühi.')
         tühi_sisend.place(x=150, y=240)
 
-
-raam = Tk()
-raam.title('PLOTMASTER BASIC BETA 1.1')
-
-background_image=PhotoImage(file="bgV2.gif")
-background_label = Label(raam, image=background_image)
-background_label.place(x=-0, y=0)
-
-raam.configure(background='white')
-
-laius = 1300
-kõrgus = 750
-
-ekraanilaius = raam.winfo_screenwidth()
-ekraanikõrgus = raam.winfo_screenheight()
-
-xkord = (ekraanilaius/2) - (laius/2)
-ykord = (ekraanikõrgus/2) - (kõrgus/2)
-
-raam.geometry('%dx%d+%d+%d' % (laius, kõrgus, xkord, ykord))
-
-#silt = ttk.Label(raam, text='Sisesta oma valem: ', background='white', font=('Cambria Math', 13, 'bold'))
-#silt.place(x=laius/2.3, y=0, width=160, height=60)
-
-valem = ttk.Entry(raam, width=40)
-valem.place(x=laius/2.53, y=70, width=265, height=60)
-
-arvuta_nupp = ttk.Button(raam, text='Arvuta!', command=näita_tulemus)
-arvuta_nupp.place(x=laius/2.53, y=140, width=130, height=40)
-
-def restart():
-    python = sys.executable
-    os.execl(python, python, * sys.argv)
-
-
-uus_funktsioon = ttk.Button(raam, text='Uus funktsioon', command=restart)
-uus_funktsioon.place(x=laius/2.0, y=140, width=130, height=40)
-
 def on_closing():
     if os.path.isfile('graafik.png'):
         os.remove('graafik.png')
@@ -414,5 +392,40 @@ def on_closing():
     else:
         sys.exit()
 
-raam.protocol("WM_DELETE_WINDOW", on_closing)
-raam.mainloop()
+
+def restart():
+    img.destroy()
+
+while True:
+    raam = Tk()
+    raam.title('PLOTMASTER BASIC BETA 1.1')
+
+    background_image=PhotoImage(file="bgV2.gif")
+    background_label = Label(raam, image=background_image)
+    background_label.place(x=-0, y=0)
+
+    raam.configure(background='white')
+
+    laius = 1300
+    kõrgus = 750
+
+    ekraanilaius = raam.winfo_screenwidth()
+    ekraanikõrgus = raam.winfo_screenheight()
+
+    xkord = (ekraanilaius/2) - (laius/2)
+    ykord = (ekraanikõrgus/2) - (kõrgus/2)
+
+    raam.geometry('%dx%d+%d+%d' % (laius, kõrgus, xkord, ykord))
+
+    global valem
+    valem = ttk.Entry(raam, width=40)
+    valem.place(x=laius/2.53, y=70, width=265, height=60)
+
+    arvuta_nupp = ttk.Button(raam, text='Arvuta!', command=näita_tulemus)
+    arvuta_nupp.place(x=laius/2.53, y=140, width=130, height=40)
+
+    uus_funktsioon = ttk.Button(raam, text='Uus funktsioon', command=restart)
+    uus_funktsioon.place(x=laius/2.0, y=140, width=130, height=40)
+
+    raam.mainloop()
+
