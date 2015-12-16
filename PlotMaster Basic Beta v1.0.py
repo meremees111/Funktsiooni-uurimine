@@ -401,11 +401,13 @@ def lisa_graafik(formula):
     img = PhotoImage(file="graafik.png")
     graaf = Label(image=img)
     graaf.image = img
-    graaf.pack(side=BOTTOM)
+    graaf.place(x=194, y=212)
 
 
 
 def näita_tulemus():
+
+
     if valem.get() != '':
 
         lisa_graafik(valem.get())
@@ -422,39 +424,33 @@ def on_closing():
         sys.exit()
 
 
-def restart():
-    img.destroy()
+raam = Tk()
+raam.title('PLOTMASTER BASIC BETA 1.2')
 
-while True:
-    raam = Tk()
-    raam.title('PLOTMASTER BASIC BETA 1.1')
+background_image=PhotoImage(file="bgV2.gif")
+background_label = Label(raam, image=background_image)
+background_label.place(x=0, y=0)
 
-    background_image=PhotoImage(file="bgV2.gif")
-    background_label = Label(raam, image=background_image)
-    background_label.place(x=-0, y=0)
+raam.configure(background='white')
 
-    raam.configure(background='white')
+laius = 1300
+kõrgus = 750
 
-    laius = 1300
-    kõrgus = 750
+ekraanilaius = raam.winfo_screenwidth()
+ekraanikõrgus = raam.winfo_screenheight()
 
-    ekraanilaius = raam.winfo_screenwidth()
-    ekraanikõrgus = raam.winfo_screenheight()
+xkord = (ekraanilaius/2) - (laius/2)
+ykord = (ekraanikõrgus/2) - (kõrgus/2)
 
-    xkord = (ekraanilaius/2) - (laius/2)
-    ykord = (ekraanikõrgus/2) - (kõrgus/2)
+raam.geometry('%dx%d+%d+%d' % (laius, kõrgus, xkord, ykord))
 
-    raam.geometry('%dx%d+%d+%d' % (laius, kõrgus, xkord, ykord))
+valem = ttk.Entry(raam, width=40)
+valem.place(x=laius/2.53, y=70, width=265, height=60)
 
-    global valem
-    valem = ttk.Entry(raam, width=40)
-    valem.place(x=laius/2.53, y=70, width=265, height=60)
+arvuta_nupp = ttk.Button(raam, text='Arvuta!', command=näita_tulemus)
+arvuta_nupp.place(x=laius/2.24, y=140, width=130, height=40)
 
-    arvuta_nupp = ttk.Button(raam, text='Arvuta!', command=näita_tulemus)
-    arvuta_nupp.place(x=laius/2.53, y=140, width=130, height=40)
 
-    uus_funktsioon = ttk.Button(raam, text='Uus funktsioon', command=restart)
-    uus_funktsioon.place(x=laius/2.0, y=140, width=130, height=40)
-
-    raam.mainloop()
+raam.protocol("WM_DELETE_WINDOW", on_closing)
+raam.mainloop()
 
