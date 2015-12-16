@@ -364,21 +364,21 @@ def lisa_graafik(formula):
     else:
         formatkäänukoht = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_käänupunkt(valem.get()))))
 
-    kasvab = formatkasvab.replace("'", "")
-    kahaneb = formatkahaneb.replace("'", "")
-    kumerus = formatkumerus.replace("'", "")
-    nõgusus = formatnõgusus.replace("'", "")
-    käänukoht = formatkäänukoht.replace("'", "")
+    kasvab_graph = formatkasvab.replace("'", "")
+    kahaneb_graph = formatkahaneb.replace("'", "")
+    kumerus_graph = formatkumerus.replace("'", "")
+    nõgusus_graph = formatnõgusus.replace("'", "")
+    käänukoht_graph = formatkäänukoht.replace("'", "")
 
     plt.title('$%s$' % funktsioon, fontsize=25)
     data1 = ('Nullkohad: ' + '\n' + '$%s$' % nullkohad)
     data2 = ('Miinimumkohad: ' + '\n' + '$%s$' % miinimum)
     data3 = ('Maksimumkohad: ' + '\n' + '$%s$' % maksimum)
-    data4 = ('Kasvamispiirkond:' + '\n' + '$%s$' % kasvab)
-    data5 = ('Kahanemispiirkond:' + '\n' + '$%s$' % kahaneb)
-    data6 = ('Kumeruspiirkond:' + '\n' + '$%s$' % kumerus)
-    data7 = ('Nõgususpiirkond:' + '\n' + '$%s$' % nõgusus)
-    data8 = ('Käänukohad:' + '\n' + '$%s$' % käänukoht)
+    data4 = ('Kasvamispiirkond:' + '\n' + '$%s$' % kasvab_graph)
+    data5 = ('Kahanemispiirkond:' + '\n' + '$%s$' % kahaneb_graph)
+    data6 = ('Kumeruspiirkond:' + '\n' + '$%s$' % kumerus_graph)
+    data7 = ('Nõgususpiirkond:' + '\n' + '$%s$' % nõgusus_graph)
+    data8 = ('Käänukohad:' + '\n' + '$%s$' % käänukoht_graph)
 
     pl.text(11, 8, data1)
     pl.text(11, 5.5, data2)
@@ -417,7 +417,7 @@ def on_closing():
 
 
 raam = Tk()
-raam.title('PLOTMASTER BASIC BETA 1.2')
+raam.title('PLOTMASTER BASIC 1.0')
 
 background_image = PhotoImage(file="bgV2.gif")
 background_label = Label(raam, image=background_image)
