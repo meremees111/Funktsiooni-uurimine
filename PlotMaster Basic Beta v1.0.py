@@ -312,7 +312,7 @@ def lisa_graafik(formula):
     ax.yaxis.set_ticks_position('left')
 
     funktsioon = latex(eval(formula))
-    nullkohad = latex(eval(' , '.join(leia_nullkohad(formula))))
+    nullkohad = latex(' , '.join(leia_nullkohad(formula)))
     miinimum = latex(' , '.join(leia_miinimum(formula)))
     maksimum = latex(' , '.join(leia_maksimum(formula)))
     formatkasvab = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_kasvamine(valem.get()))))
