@@ -301,8 +301,8 @@ def lisa_graafik(formula):
     y = eval(formula)
     ax.plot(x, y)
     pl.grid()
-    pl.xticks(np.arange(-10,11,1))
-    pl.yticks(np.arange(-10,11,1))
+    pl.xticks(np.arange(-10, 11, 1))
+    pl.yticks(np.arange(-10, 11, 1))
     pl.ylim(-10, 10)
     fig.set_size_inches(17, 12)
     x = symbols('x')
@@ -313,7 +313,6 @@ def lisa_graafik(formula):
     ax.spines['top'].set_color('none')
     ax.xaxis.set_ticks_position('bottom')
     ax.yaxis.set_ticks_position('left')
-
 
     funktsioon = latex(eval(formula))
 
@@ -365,11 +364,6 @@ def lisa_graafik(formula):
     else:
         formatkäänukoht = ''.join(ch for ch, _ in itertools.groupby(''.join(leia_käänupunkt(valem.get()))))
 
-    # TODO:
-    # eval ei tööta siis, kui asja sees on string, näiteks 'puudub' või 'infty'
-    # evalile ei meeldi, kui stringis on \ sümbol
-    # eval tagastab floate päris haige komakohaga
-
     kasvab = formatkasvab.replace("'", "")
     kahaneb = formatkahaneb.replace("'", "")
     kumerus = formatkumerus.replace("'", "")
@@ -404,10 +398,7 @@ def lisa_graafik(formula):
     graaf.place(x=194, y=212)
 
 
-
 def näita_tulemus():
-
-
     if valem.get() != '':
 
         lisa_graafik(valem.get())
@@ -415,6 +406,7 @@ def näita_tulemus():
     else:
         tühi_sisend = ttk.Label(raam, text='Sisend on tühi.')
         tühi_sisend.place(x=150, y=240)
+
 
 def on_closing():
     if os.path.isfile('graafik.png'):
@@ -427,7 +419,7 @@ def on_closing():
 raam = Tk()
 raam.title('PLOTMASTER BASIC BETA 1.2')
 
-background_image=PhotoImage(file="bgV2.gif")
+background_image = PhotoImage(file="bgV2.gif")
 background_label = Label(raam, image=background_image)
 background_label.place(x=0, y=0)
 
@@ -453,4 +445,3 @@ arvuta_nupp.place(x=laius/2.24, y=140, width=130, height=40)
 
 raam.protocol("WM_DELETE_WINDOW", on_closing)
 raam.mainloop()
-
