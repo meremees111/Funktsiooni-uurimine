@@ -24,10 +24,6 @@ def leia_nullkohad(sisend):
         return ['Puudub']
 
 
-def lahenda_võrrand(sisend):
-    return solve(sisend, x)
-
-
 def leia_miinimum(sisend):
     tuletis = diff(sisend, x)
     if diff(tuletis, x) != 0:
